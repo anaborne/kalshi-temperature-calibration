@@ -1,0 +1,70 @@
+================================================================================================
+TEST B -- FIT  (Correction 2: per-city table on a frozen pre-period)
+================================================================================================
+  training cities (12): KXHIGHAUS KXHIGHCHI KXHIGHDEN KXHIGHLAX KXHIGHMIA KXHIGHTATL KXHIGHTBOS KXHIGHTDC KXHIGHTHOU KXHIGHTOKC KXHIGHTPHX KXHIGHTSATX
+  table is fit for all 21 cities from each city's OWN observations,
+  strictly before 2025-01-01. It contains no market data of any kind:
+  no prices, no volumes, no results, no expiration_value.
+
+  PRE-PERIOD VERIFICATION (Correction 2)
+    cutoff: observations strictly before 2025-01-01
+    newest observation admitted, over 21 cities: 2024-12-31
+    PASS -- no observation dated 2025-01-01 or later entered the table
+
+    cells: 3,780 populated across 21 cities x 12 months x 15 hours
+    observations per cell: min 734  p05 837  median 930  max 930
+    sec.6 floor is 200: 0 cells below it (0.00%), 3,780 tradeable
+    unpopulated (city, month, hour) combinations: 0
+
+  RESIDUAL WARMING R = final max - M_H  (median, degrees F, all cities pooled
+  FOR DISPLAY ONLY -- the table itself is per-city and never pooled)
+    H   winter   spring   summer   autumn
+    9      6.0      8.0      8.0      7.0
+   10      4.0      6.0      6.0      5.0
+   11      3.0      4.0      4.0      3.0
+   12      1.0      2.0      3.0      2.0
+   13      0.0      1.0      1.0      1.0
+   14      0.0      0.0      0.0      0.0
+   15      0.0      0.0      0.0      0.0
+   16      0.0      0.0      0.0      0.0
+   17      0.0      0.0      0.0      0.0
+   18      0.0      0.0      0.0      0.0
+   19      0.0      0.0      0.0      0.0
+   20      0.0      0.0      0.0      0.0
+   21      0.0      0.0      0.0      0.0
+   22      0.0      0.0      0.0      0.0
+   23      0.0      0.0      0.0      0.0
+
+------------------------------------------------------------------------------------------------
+  TRAINING-CITY RUN (this is where the rule's free choices are checked)
+  skips: {'no expiration_value': 334}
+
+  TRAIN BY TRADE SHAPE -- reported separately, never pooled into one edge
+  shape                     trades  dates  mean/trade                 95% CI  c/contract  accuracy
+  dominated-bucket sell        117     19 $   -1.3102     [-2.4879, -0.1718]      -7.13c     87.2%
+  mid-bucket buy            13,129   1140 $   -1.8632     [-1.9673, -1.7627]     -10.04c      9.1%
+  other                     19,484   1458 $   -1.4637     [-1.5567, -1.3697]      -9.45c     66.2%
+
+    dominated-bucket sells need 98.1% settle accuracy to break even; realised 87.2%.
+    Their EV is determined by the floor violation rate, which Test A bounds
+    at 25% per date in the TWC stratum. This shape is not evidenced by this
+    sample regardless of what its realised PnL says.
+
+  TRAIN BY SEASON (Correction 1 -- pooling mixes regimes, not noise)
+    winter    5397 trades  mean $ -1.9698  95% CI [$-2.1461, $-1.7945]  -10.97c/ct
+                            date-clustered CI [$-2.2302, $-1.7068]
+    spring   12019 trades  mean $ -1.6841  95% CI [$-1.7959, $-1.5709]   -9.83c/ct
+                            date-clustered CI [$-1.8620, $-1.5070]
+    summer   11495 trades  mean $ -1.4564  95% CI [$-1.5752, $-1.3405]   -9.07c/ct
+                            date-clustered CI [$-1.6497, $-1.2617]
+    autumn    3819 trades  mean $ -1.4452  95% CI [$-1.6501, $-1.2392]   -9.17c/ct
+                            date-clustered CI [$-1.7770, $-1.1022]
+  train, all seasons and shapes (POOLED -- NOT the headline)
+    trades 32,730 over 1559 dates, 547,574 contracts, fees $4873.28
+    mean PnL/trade  $ -1.6234   95% CI [$-1.6932, $-1.5546]
+    date-clustered CI            [$-1.7356, $-1.5103]
+    net edge  -9.70c/contract   win rate 17.2%   total $-53133.24
+
+  wrote data/test_b_rule.json -- the rule is frozen.
+  sec.8: changing threshold, cell keys, fill assumption or split after the
+  holdout is seen kills C3. --holdout runs once.

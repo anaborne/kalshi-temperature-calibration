@@ -1,0 +1,48 @@
+== observation pull: 21 stations x 17 years (2010-2026) ==
+  [ 1/21] AUS  KXHIGHAUS      171,574 rows  171,552 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [ 2/21] MDW  KXHIGHCHI      172,341 rows  172,323 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [ 3/21] DEN  KXHIGHDEN      171,200 rows  171,186 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [ 4/21] LAX  KXHIGHLAX      169,035 rows  168,909 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [ 5/21] MIA  KXHIGHMIA      166,304 rows  166,222 usable  2010-01-01..2026-08-27  decimal  17 pulled
+  [ 6/21] NYC  KXHIGHNY       185,962 rows  185,569 usable  2010-01-01..2026-08-27  decimal  0 pulled
+  [ 7/21] PHL  KXHIGHPHIL     190,696 rows  190,667 usable  2010-01-01..2026-08-27  decimal  17 pulled
+  [ 8/21] ATL  KXHIGHTATL     172,636 rows  172,629 usable  2010-01-01..2026-08-27  decimal  17 pulled
+  [ 9/21] BOS  KXHIGHTBOS     175,207 rows  175,185 usable  2010-01-01..2026-08-27  decimal  17 pulled
+  [10/21] DFW  KXHIGHTDAL     171,598 rows  171,558 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [11/21] DCA  KXHIGHTDC      181,169 rows  181,155 usable  2010-01-01..2026-08-27  decimal  17 pulled
+  [12/21] HOU  KXHIGHTHOU     177,454 rows  177,406 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [13/21] LAS  KXHIGHTLV      150,477 rows  150,435 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [14/21] MSP  KXHIGHTMIN     180,976 rows  180,969 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [15/21] MSY  KXHIGHTNOLA    176,954 rows  176,937 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [16/21] OKC  KXHIGHTOKC     169,439 rows  169,182 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [17/21] PHX  KXHIGHTPHX     149,885 rows  149,858 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [18/21] SAN  KXHIGHTSAN     178,665 rows  178,519 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [19/21] SAT  KXHIGHTSATX    178,092 rows  178,081 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [20/21] SEA  KXHIGHTSEA     179,141 rows  179,104 usable  2010-01-01..2026-08-26  decimal  17 pulled
+  [21/21] SFO  KXHIGHTSFO     161,229 rows  161,138 usable  2010-01-01..2026-08-26  decimal  17 pulled
+
+  one CSV per station under data/obs/
+== observation pull: 21 stations x 32 years (1995-2026) ==
+  [ 1/21] AUS  KXHIGHAUS      290,908 rows  290,819 usable  1998-04-28..2026-08-26  decimal  15 pulled  THIN:1995,1996,1997
+  [ 2/21] MDW  KXHIGHCHI      326,046 rows  321,095 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [ 3/21] DEN  KXHIGHDEN      329,681 rows  328,333 usable  1995-01-04..2026-08-26  decimal  15 pulled
+  [ 4/21] LAX  KXHIGHLAX      320,083 rows  317,873 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [ 5/21] MIA  KXHIGHMIA      315,038 rows  313,416 usable  1995-01-01..2026-08-27  decimal  15 pulled
+  [ 6/21] NYC  KXHIGHNY       322,071 rows  320,678 usable  1995-11-01..2026-08-27  decimal  15 pulled  THIN:1995
+  [ 7/21] PHL  KXHIGHPHIL     347,635 rows  345,685 usable  1995-01-01..2026-08-27  decimal  15 pulled
+  [ 8/21] ATL  KXHIGHTATL     328,166 rows  325,956 usable  1995-01-01..2026-08-27  decimal  15 pulled
+  [ 9/21] BOS  KXHIGHTBOS     337,365 rows  335,250 usable  1995-01-01..2026-08-27  decimal  15 pulled
+  [10/21] DFW  KXHIGHTDAL     325,075 rows  323,710 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [11/21] DCA  KXHIGHTDC      340,176 rows  338,018 usable  1995-01-01..2026-08-27  decimal  15 pulled
+  [12/21] HOU  KXHIGHTHOU     332,651 rows  329,704 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [13/21] LAS  KXHIGHTLV      284,117 rows  283,733 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [14/21] MSP  KXHIGHTMIN     356,262 rows  352,235 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [15/21] MSY  KXHIGHTNOLA    333,083 rows  330,562 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [16/21] OKC  KXHIGHTOKC     321,402 rows  319,149 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [17/21] PHX  KXHIGHTPHX     288,192 rows  287,958 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [18/21] SAN  KXHIGHTSAN     332,910 rows  330,448 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [19/21] SAT  KXHIGHTSATX    338,172 rows  337,178 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [20/21] SEA  KXHIGHTSEA     342,930 rows  340,781 usable  1995-01-01..2026-08-26  decimal  15 pulled
+  [21/21] SFO  KXHIGHTSFO     309,639 rows  307,687 usable  1995-01-01..2026-08-26  decimal  15 pulled
+
+  one CSV per station under data/obs/

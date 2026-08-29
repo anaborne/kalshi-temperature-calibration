@@ -1,0 +1,1159 @@
+{
+  "approved": true,
+  "corroboration_train_only": [
+    {
+      "exact_pct": 38.23529411764706,
+      "mean_diff": -0.6764705882352942,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHAUS",
+      "station": "AUS",
+      "within_1f_pct": 94.11764705882354,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 36.76470588235294,
+      "mean_diff": -0.7029411764705882,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHCHI",
+      "station": "MDW",
+      "within_1f_pct": 94.11764705882354,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 23.529411764705884,
+      "mean_diff": -1.088235294117647,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHDEN",
+      "station": "DEN",
+      "within_1f_pct": 72.05882352941177,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 36.76470588235294,
+      "mean_diff": -0.8088235294117647,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHLAX",
+      "station": "LAX",
+      "within_1f_pct": 85.29411764705883,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 42.64705882352941,
+      "mean_diff": -0.6911764705882353,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHMIA",
+      "station": "MIA",
+      "within_1f_pct": 86.76470588235294,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 33.8235294117647,
+      "mean_diff": -0.7941176470588235,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHTATL",
+      "station": "ATL",
+      "within_1f_pct": 86.76470588235294,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 30.88235294117647,
+      "mean_diff": -0.8235294117647058,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHTBOS",
+      "station": "BOS",
+      "within_1f_pct": 88.23529411764706,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 36.76470588235294,
+      "mean_diff": -0.7647058823529411,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHTDC",
+      "station": "DCA",
+      "within_1f_pct": 88.23529411764706,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 32.35294117647059,
+      "mean_diff": -0.8235294117647058,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHTHOU",
+      "station": "HOU",
+      "within_1f_pct": 88.23529411764706,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 33.8235294117647,
+      "mean_diff": -0.7058823529411765,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHTOKC",
+      "station": "OKC",
+      "within_1f_pct": 95.58823529411765,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 14.705882352941176,
+      "mean_diff": -1.0294117647058822,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHTPHX",
+      "station": "PHX",
+      "within_1f_pct": 83.82352941176471,
+      "worst_above": 0.0
+    },
+    {
+      "exact_pct": 39.705882352941174,
+      "mean_diff": -0.6176470588235294,
+      "n": 68,
+      "obs_above_settled_pct": 0.0,
+      "series_ticker": "KXHIGHTSATX",
+      "station": "SAT",
+      "within_1f_pct": 98.52941176470588,
+      "worst_above": 0.0
+    }
+  ],
+  "probe_day": "2026-08-25",
+  "rows": [
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1998-04-28T00:00:00Z",
+      "iem_lat": 30.18304,
+      "iem_lon": -97.67987,
+      "iem_name": "Austin Bergstrom Intl",
+      "iem_network": "TX_ASOS",
+      "iem_tzname": "America/Chicago",
+      "note": "Austin-Bergstrom International.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 102.0,
+        "n": 24
+      },
+      "proposed_station": "AUS",
+      "rule_cli_codes": [
+        [
+          "CLIAUS",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Austin Bergstrom",
+          336
+        ],
+        [
+          "Austin",
+          72
+        ]
+      ],
+      "series_ticker": "KXHIGHAUS",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Highest temperature in Austin",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1928-10-04T00:00:00Z",
+      "iem_lat": 41.78597,
+      "iem_lon": -87.75242,
+      "iem_name": "CHICAGO",
+      "iem_network": "IL_ASOS",
+      "iem_tzname": "America/Chicago",
+      "note": "Chicago MIDWAY. The rules never say O'Hare -- the obvious ORD guess is wrong.",
+      "probe": {
+        "decimals": true,
+        "max_tmpf": 80.0,
+        "n": 24
+      },
+      "proposed_station": "MDW",
+      "rule_cli_codes": [
+        [
+          "CLIMDW",
+          72
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Chicago Midway, IL",
+          336
+        ],
+        [
+          "Chicago",
+          72
+        ]
+      ],
+      "series_ticker": "KXHIGHCHI",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Highest temperature in Chicago",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1974-11-12T00:00:00Z",
+      "iem_lat": 39.8328,
+      "iem_lon": -104.6575,
+      "iem_name": "DENVER INTNL ARPT",
+      "iem_network": "CO_ASOS",
+      "iem_tzname": "America/Denver",
+      "note": "Denver International.",
+      "probe": {
+        "decimals": true,
+        "max_tmpf": 84.0,
+        "n": 24
+      },
+      "proposed_station": "DEN",
+      "rule_cli_codes": [
+        [
+          "CLIDEN",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Denver, CO",
+          336
+        ],
+        [
+          "Denver",
+          72
+        ]
+      ],
+      "series_ticker": "KXHIGHDEN",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Highest temperature in Denver",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1931-06-02T00:00:00Z",
+      "iem_lat": 33.93816,
+      "iem_lon": -118.38653,
+      "iem_name": "LOS ANGELES INTL",
+      "iem_network": "CA_ASOS",
+      "iem_tzname": "America/Los_Angeles",
+      "note": "LA International, not downtown USC (CQT).",
+      "probe": {
+        "decimals": true,
+        "max_tmpf": 84.0,
+        "n": 26
+      },
+      "proposed_station": "LAX",
+      "rule_cli_codes": [
+        [
+          "CLILAX",
+          72
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Los Angeles Airport, CA",
+          336
+        ],
+        [
+          "Los Angeles",
+          72
+        ]
+      ],
+      "series_ticker": "KXHIGHLAX",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Highest temperature in Los Angeles",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1932-07-01T00:00:00Z",
+      "iem_lat": 25.78805,
+      "iem_lon": -80.31693,
+      "iem_name": "MIAMI INTL AIRPORT",
+      "iem_network": "FL_ASOS",
+      "iem_tzname": "America/New_York",
+      "note": "Miami International.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 92.0,
+        "n": 26
+      },
+      "proposed_station": "MIA",
+      "rule_cli_codes": [
+        [
+          "CLIMIA",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Miami International Airport",
+          336
+        ],
+        [
+          "Miami",
+          72
+        ]
+      ],
+      "series_ticker": "KXHIGHMIA",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Highest temperature in Miami",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "confirmed",
+      "iem_archive_begin": "1943-12-01T00:00:00Z",
+      "iem_lat": 40.779,
+      "iem_lon": -73.96925,
+      "iem_name": "NEW YORK CITY",
+      "iem_network": "NY_ASOS",
+      "iem_tzname": "America/New_York",
+      "note": "Central Park, NOT JFK/LGA/EWR. Confirmed in sec.1.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 77.0,
+        "n": 24
+      },
+      "proposed_station": "NYC",
+      "rule_cli_codes": [
+        [
+          "CLINYC",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Central Park, New York",
+          336
+        ],
+        [
+          "New York City",
+          72
+        ]
+      ],
+      "series_ticker": "KXHIGHNY",
+      "settled_markets": 408,
+      "split": "holdout",
+      "title": "Highest temperature in NYC",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1940-01-25T00:00:00Z",
+      "iem_lat": 39.87335377,
+      "iem_lon": -75.22662535,
+      "iem_name": "Philadelphia Intl",
+      "iem_network": "PA_ASOS",
+      "iem_tzname": "America/New_York",
+      "note": "Philadelphia International.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 80.0,
+        "n": 24
+      },
+      "proposed_station": "PHL",
+      "rule_cli_codes": [
+        [
+          "CLIPHL",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Philadelphia International Airport",
+          336
+        ],
+        [
+          "Philadelphia",
+          72
+        ]
+      ],
+      "series_ticker": "KXHIGHPHIL",
+      "settled_markets": 408,
+      "split": "holdout",
+      "title": "Highest temperature in Philadelphia",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1945-01-01T00:00:00Z",
+      "iem_lat": 33.6301,
+      "iem_lon": -84.4418,
+      "iem_name": "ATLANTA INTL ARPT",
+      "iem_network": "GA_ASOS",
+      "iem_tzname": "America/New_York",
+      "note": "Hartsfield-Jackson.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 92.0,
+        "n": 24
+      },
+      "proposed_station": "ATL",
+      "rule_cli_codes": [
+        [
+          "CLIATL",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Atlanta",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTATL",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Atlanta Max Temperature",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1936-01-01T00:00:00Z",
+      "iem_lat": 42.36057,
+      "iem_lon": -71.00973,
+      "iem_name": "BOSTON/LOGAN INTL",
+      "iem_network": "MA_ASOS",
+      "iem_tzname": "America/New_York",
+      "note": "Logan International.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 80.0,
+        "n": 24
+      },
+      "proposed_station": "BOS",
+      "rule_cli_codes": [
+        [
+          "CLIBOS",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Boston",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTBOS",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Boston Maximum Daily Temperature",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1953-05-01T00:00:00Z",
+      "iem_lat": 32.89683,
+      "iem_lon": -97.038,
+      "iem_name": "DALLAS/FT WORTH",
+      "iem_network": "TX_ASOS",
+      "iem_tzname": "America/Chicago",
+      "note": "DFW International, NOT Love Field (DAL).",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 100.0,
+        "n": 24
+      },
+      "proposed_station": "DFW",
+      "rule_cli_codes": [
+        [
+          "CLIDFW",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Dallas",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTDAL",
+      "settled_markets": 408,
+      "split": "holdout",
+      "title": "Dallas Maximum Temperature",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1929-07-01T00:00:00Z",
+      "iem_lat": 38.8472,
+      "iem_lon": -77.03455,
+      "iem_name": "WASHINGTON/NATIONAL",
+      "iem_network": "VA_ASOS",
+      "iem_tzname": "America/New_York",
+      "note": "Reagan National, NOT Dulles (IAD) or BWI.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 83.0,
+        "n": 25
+      },
+      "proposed_station": "DCA",
+      "rule_cli_codes": [
+        [
+          "CLIDCA",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Washington DC",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTDC",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Washington DC Daily Max Temp",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1929-02-01T00:00:00Z",
+      "iem_lat": 29.63747,
+      "iem_lon": -95.28245,
+      "iem_name": "HOUSTON/WILL HOBBY",
+      "iem_network": "TX_ASOS",
+      "iem_tzname": "America/Chicago",
+      "note": "Houston HOBBY. Rules say CLIHOU; IAH is the wrong airport.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 97.0,
+        "n": 24
+      },
+      "proposed_station": "HOU",
+      "rule_cli_codes": [
+        [
+          "CLIHOU",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Houston",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTHOU",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Daily High Temperature Houston",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1948-12-18T00:00:00Z",
+      "iem_lat": 36.0719,
+      "iem_lon": -115.1634,
+      "iem_name": "Las Vegas - Harry Reid Intl",
+      "iem_network": "NV_ASOS",
+      "iem_tzname": "America/Los_Angeles",
+      "note": "Harry Reid International.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 106.0,
+        "n": 24
+      },
+      "proposed_station": "LAS",
+      "rule_cli_codes": [
+        [
+          "CLILAS",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Las Vegas",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTLV",
+      "settled_markets": 408,
+      "split": "holdout",
+      "title": "Las Vegas Max Daily Temperature",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1931-01-01T00:00:00Z",
+      "iem_lat": 44.88537,
+      "iem_lon": -93.23131,
+      "iem_name": "MINNEAPOLIS",
+      "iem_network": "MN_ASOS",
+      "iem_tzname": "America/Chicago",
+      "note": "Minneapolis-St Paul International.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 81.0,
+        "n": 24
+      },
+      "proposed_station": "MSP",
+      "rule_cli_codes": [
+        [
+          "CLIMSP",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Minneapolis",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTMIN",
+      "settled_markets": 408,
+      "split": "holdout",
+      "title": "Minneapolis Daily High Temperature",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1932-05-01T00:00:00Z",
+      "iem_lat": 29.9933,
+      "iem_lon": -90.2511,
+      "iem_name": "New Orleans - Louis Armstrong",
+      "iem_network": "LA_ASOS",
+      "iem_tzname": "America/Chicago",
+      "note": "Louis Armstrong International.",
+      "probe": {
+        "decimals": true,
+        "max_tmpf": 93.0,
+        "n": 30
+      },
+      "proposed_station": "MSY",
+      "rule_cli_codes": [
+        [
+          "CLIMSY",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "New Orleans",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTNOLA",
+      "settled_markets": 408,
+      "split": "holdout",
+      "title": "New Orleans Max temp Daily",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1941-12-14T00:00:00Z",
+      "iem_lat": 35.3889,
+      "iem_lon": -97.6006,
+      "iem_name": "Oklahoma City",
+      "iem_network": "OK_ASOS",
+      "iem_tzname": "America/Chicago",
+      "note": "Will Rogers World.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 104.0,
+        "n": 25
+      },
+      "proposed_station": "OKC",
+      "rule_cli_codes": [
+        [
+          "CLIOKC",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Oklahoma City",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTOKC",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Oklahoma City Maximum High Temperature",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1931-01-01T00:00:00Z",
+      "iem_lat": 33.43428,
+      "iem_lon": -112.01158,
+      "iem_name": "PHOENIX/SKY HARBOR",
+      "iem_network": "AZ_ASOS",
+      "iem_tzname": "America/Phoenix",
+      "note": "Sky Harbor International.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 114.0,
+        "n": 24
+      },
+      "proposed_station": "PHX",
+      "rule_cli_codes": [
+        [
+          "CLIPHX",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Phoenix",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTPHX",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "Phoenix High Temperature Daily",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "TWC",
+          "first": "2026-08-19",
+          "last": "2026-08-25",
+          "markets": 42
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1930-01-01T00:00:00Z",
+      "iem_lat": 32.73392,
+      "iem_lon": -117.18449,
+      "iem_name": "SAN DIEGO/LINDBERG",
+      "iem_network": "CA_ASOS",
+      "iem_tzname": "America/Los_Angeles",
+      "note": "San Diego International (Lindbergh Field).",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 85.0,
+        "n": 24
+      },
+      "proposed_station": "SAN",
+      "rule_cli_codes": [
+        [
+          "CLISAN",
+          42
+        ]
+      ],
+      "rule_locations": [
+        [
+          "San Diego",
+          42
+        ]
+      ],
+      "series_ticker": "KXHIGHTSAN",
+      "settled_markets": 42,
+      "split": "holdout",
+      "title": "High Temperature San Diego",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1934-03-09T00:00:00Z",
+      "iem_lat": 29.52998148,
+      "iem_lon": -98.46728521,
+      "iem_name": "San Antonio",
+      "iem_network": "TX_ASOS",
+      "iem_tzname": "America/Chicago",
+      "note": "San Antonio International.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 100.0,
+        "n": 25
+      },
+      "proposed_station": "SAT",
+      "rule_cli_codes": [
+        [
+          "CLISAT",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "San Antonio",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTSATX",
+      "settled_markets": 408,
+      "split": "train",
+      "title": "San Antonio Daily Maximum Temperature",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1944-07-07T00:00:00Z",
+      "iem_lat": 47.44469,
+      "iem_lon": -122.31437,
+      "iem_name": "SEATTLE-TACOMA INTL",
+      "iem_network": "WA_ASOS",
+      "iem_tzname": "America/Los_Angeles",
+      "note": "Seattle-Tacoma International, NOT Boeing Field (BFI).",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 84.0,
+        "n": 24
+      },
+      "proposed_station": "SEA",
+      "rule_cli_codes": [
+        [
+          "CLISEA",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "Seattle",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTSEA",
+      "settled_markets": 408,
+      "split": "holdout",
+      "title": "Seattle Maximum Temperature Daily",
+      "unparsed_rules": 0
+    },
+    {
+      "approved": false,
+      "authority_spans": [
+        {
+          "authority": "NWS_CLI",
+          "first": "2026-06-19",
+          "last": "2026-08-13",
+          "markets": 336
+        },
+        {
+          "authority": "TWC",
+          "first": "2026-08-14",
+          "last": "2026-08-25",
+          "markets": 72
+        }
+      ],
+      "confidence": "code-confirmed",
+      "iem_archive_begin": "1932-01-01T00:00:00Z",
+      "iem_lat": 37.61897,
+      "iem_lon": -122.37489,
+      "iem_name": "SAN FRANCISCO INTL",
+      "iem_network": "CA_ASOS",
+      "iem_tzname": "America/Los_Angeles",
+      "note": "San Francisco International, not downtown.",
+      "probe": {
+        "decimals": false,
+        "max_tmpf": 67.0,
+        "n": 26
+      },
+      "proposed_station": "SFO",
+      "rule_cli_codes": [
+        [
+          "CLISFO",
+          66
+        ]
+      ],
+      "rule_locations": [
+        [
+          "San Francisco",
+          408
+        ]
+      ],
+      "series_ticker": "KXHIGHTSFO",
+      "settled_markets": 408,
+      "split": "holdout",
+      "title": "San Francisco High Temperature Daily",
+      "unparsed_rules": 0
+    }
+  ],
+  "approved_by": "human review, 2026-08-27, after independent re-verification of CLIMDW and CLIHOU against live rules_primary"
+}

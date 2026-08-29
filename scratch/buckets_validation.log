@@ -1,0 +1,11 @@
+== bucket parser validation: strikes vs yes_sub_title ==
+  markets read                             : 60,906
+  both representations present, AGREE      : 57,956
+  both representations present, DISAGREE   : 0
+  subtitle only (the fallback's whole job) : 2,949
+  neither -- genuinely unbounded           : 1
+
+  RECONCILED  60,906 read = 57,956 with strike fields + 2,950 without
+  the 2,950 strike-less markets are the population section 5 of RESULTS.md was silently dropping;
+  2,949 are recovered from yes_sub_title and 1 is genuinely unbounded.
+  DISAGREE is 0: the fallback never contradicts the strike fields where both exist.

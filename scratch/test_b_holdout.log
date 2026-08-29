@@ -1,0 +1,58 @@
+================================================================================================
+TEST B -- HOLDOUT, RUN ONCE (sec.7)
+================================================================================================
+  frozen rule: threshold 10c after fees, cell floor 200, fee multiplier 1
+  table: each city's own IEM observations, strictly before 2025-01-01
+  verified newest observation in table: 2024-12-31
+  holdout cities (9): KXHIGHNY KXHIGHPHIL KXHIGHTDAL KXHIGHTLV KXHIGHTMIN KXHIGHTNOLA KXHIGHTSAN KXHIGHTSEA KXHIGHTSFO
+
+  skips: {'no expiration_value': 131}
+
+  HOLDOUT BY TRADE SHAPE -- reported separately, never pooled into one edge
+  shape                     trades  dates  mean/trade                 95% CI  c/contract  accuracy
+  dominated-bucket sell         78     18 $   -4.1176     [-5.7160, -2.6552]     -23.46c     94.9%
+  mid-bucket buy             7,819    938 $   -1.5971     [-1.7350, -1.4573]      -9.06c     11.1%
+  other                     11,451   1350 $   -1.2427     [-1.3690, -1.1177]      -8.38c     62.8%
+
+    dominated-bucket sells need 98.1% settle accuracy to break even; realised 94.9%.
+    Their EV is determined by the floor violation rate, which Test A bounds
+    at 25% per date in the TWC stratum. This shape is not evidenced by this
+    sample regardless of what its realised PnL says.
+
+  HOLDOUT BY SEASON (Correction 1 -- pooling mixes regimes, not noise)
+    winter    3683 trades  mean $ -1.7475  95% CI [$-1.9547, $-1.5382]  -10.69c/ct
+                            date-clustered CI [$-2.1345, $-1.3297]
+    spring    7102 trades  mean $ -1.3493  95% CI [$-1.4965, $-1.2062]   -8.51c/ct
+                            date-clustered CI [$-1.6018, $-1.0894]
+    summer    6729 trades  mean $ -1.2891  95% CI [$-1.4472, $-1.1309]   -8.12c/ct
+                            date-clustered CI [$-1.5684, $-1.0068]
+    autumn    1834 trades  mean $ -1.2790  95% CI [$-1.5960, $-0.9630]   -8.03c/ct
+                            date-clustered CI [$-1.8085, $-0.7333]
+  holdout, all seasons and shapes (POOLED -- NOT the headline)
+    trades 19,348 over 1463 dates, 308,873 contracts, fees $2937.25
+    mean PnL/trade  $ -1.3975   95% CI [$-1.4887, $-1.3034]
+    date-clustered CI            [$-1.5643, $-1.2328]
+    net edge  -8.75c/contract   win rate 19.8%   total $-27039.23
+
+  SENSITIVITIES (reported, not corrected -- the headline is the frozen rule)
+  lag-1: M_{H-1} against hour H's quotes (removes intra-hour lookahead)
+    trades 21,985 over 1530 dates, 357,074 contracts, fees $3265.01
+    mean PnL/trade  $ -1.7826   95% CI [$-1.8662, $-1.6968]
+    date-clustered CI            [$-1.9346, $-1.6267]
+    net edge  -10.98c/contract   win rate 17.0%   total $-39190.86
+
+================================================================================================
+  sec.8 KILL CRITERIA, PER SHAPE (the shapes have different evidence needs)
+    mid-bucket buy           DIES -- 95% CI lower bound $-1.7350 <= 0
+    dominated-bucket sell    DIES -- 95% CI lower bound $-5.7160 <= 0
+
+  sec.8 KILL CRITERIA, PER SEASON
+    winter   C3 DIES in winter -- 95% CI lower bound $-1.9547 <= 0
+    spring   C3 DIES in spring -- 95% CI lower bound $-1.4965 <= 0
+    summer   C3 DIES in summer -- 95% CI lower bound $-1.4472 <= 0
+    autumn   C3 DIES in autumn -- 95% CI lower bound $-1.5960 <= 0
+
+    sec.8 forbids lowering the threshold to manufacture trades. Where the
+    count is short, the reported result is the null, not a retuned rule.
+
+  wrote data/test_b_results.json

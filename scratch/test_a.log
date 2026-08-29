@@ -1,0 +1,286 @@
+============================================================================================================
+TEST A -- the safety test (sec.5; Checkpoint 1 and Correction 1 amendments applied)
+============================================================================================================
+  10,677 settled city-days, 21 cities, 1843 distinct dates, 2021-08-06 .. 2026-08-25
+  tiers: {'live': 1367, 'historical': 9310}
+  by season: {'summer': 3328, 'winter': 2338, 'spring': 3262, 'autumn': 1749}
+  by authority: {'TWC': 247, 'NWS_CLI': 9975, 'UNSPECIFIED': 455}
+  NWS_CLI pools three wordings of the same product:
+     6,245 city-days  2025-03-05 .. 2026-08-13  "National Weather Service's Climatological Report"
+     2,688 city-days  2022-03-04 .. 2025-03-04  "National Weather Service's Daily Climate Report"
+     1,042 city-days  2022-04-27 .. 2025-03-04  "NWS's Daily Climate Report"
+  UNSPECIFIED: 455 city-days (4.3%), 2021-08-06 .. 2022-04-26 -- rules name no settlement source at all.
+    Kept as its own stratum rather than folded into NWS. Assuming an
+    unstated source is the same as a stated one is the error sec.1 made.
+
+============================================================================================================
+VARIANT: UNROUNDED  (observations as reported)
+  city-days skipped: {'no settled value and no single winner': 4}
+
+  PRIMARY -- D = settled value minus final observed max, degrees F
+  Full distribution. Summary stats hide the shape of the left tail and
+  every dollar of this strategy's risk lives there.
+  stratum               days  dates   exact   mean    sd   min   p01   p05   p25   p50   p75   p95   p99   max   D<0  indet
+  TWC                    247     12     247   0.86  0.67   0.0   0.0   0.0   0.0   1.0   1.0   2.0   2.0   3.0     0      0
+    TWC/summer           247     12     247   0.86  0.67   0.0   0.0   0.0   0.0   1.0   1.0   2.0   2.0   3.0     0      0
+  NWS_CLI              9,971  1,623   9,510   0.72  0.74 -13.0   0.0   0.0   0.0   1.0   1.0   2.0   3.0  13.0    90    339
+    NWS_CLI/winter     2,159    360   1,884   0.58  0.78  -8.0  -0.2   0.0   0.0   0.4   1.0   2.0   3.0  13.0    25    207
+    NWS_CLI/spring     3,201    457   3,201   0.74  0.78 -13.0  -1.0   0.0   0.0   1.0   1.0   2.0   3.0   5.0    43      0
+    NWS_CLI/summer     3,043    442   3,043   0.80  0.71  -4.0   0.0   0.0   0.0   1.0   1.0   2.0   3.0   4.0    16      0
+    NWS_CLI/autumn     1,568    364   1,382   0.70  0.66  -1.0   0.0   0.0   0.0   1.0   1.0   2.0   2.0   3.0     6    132
+  UNSPECIFIED            455    262     455   0.54  0.84  -8.0  -0.6   0.0   0.0   0.0   1.0   2.0   3.0   4.0    11      0
+    UNSPECIFIED/winter     176     88     176   0.51  0.75  -0.4  -0.1   0.0   0.0   0.0   1.0   2.0   4.0   4.0     5      0
+    UNSPECIFIED/spring      60     57      60   0.48  1.32  -8.0  -3.9  -0.1   0.0   1.0   1.0   2.0   2.0   2.0     4      0
+    UNSPECIFIED/summer      38     26      38   0.89  0.83   0.0   0.0   0.0   0.0   1.0   1.0   2.1   3.0   3.0     0      0
+    UNSPECIFIED/autumn     181     91     181   0.51  0.69  -2.0  -0.2   0.0   0.0   0.0   1.0   2.0   2.0   3.0     2      0
+  POOLED              10,673  1,843  10,212   0.72  0.75 -13.0   0.0   0.0   0.0   1.0   1.0   2.0   3.0  13.0   101    339  <- not the headline
+
+  LEFT TAIL, ENUMERATED -- every city-day with D <= 0
+  100 city-days with D < 0, 3898 with D == 0, out of 10,212 with an exact value
+  city-day                 auth     season   settled  obs max      D  margin
+  KXHIGHDEN-26APR17        NWS_CLI  spring      41.0     54.0  -13.0       0
+  HIGHCHI-22MAR31          UNSPECIFIED spring      50.0     58.0   -8.0    None
+  KXHIGHNY-24DEC29         NWS_CLI  winter      60.0     68.0   -8.0       0
+  KXHIGHNY-25JUN02         NWS_CLI  summer      66.0     70.0   -4.0    None
+  KXHIGHNY-26MAR17         NWS_CLI  spring      48.0     51.0   -3.0    None
+  KXHIGHPHIL-26APR02       NWS_CLI  spring      58.0     61.0   -3.0       0
+  KXHIGHTBOS-26APR20       NWS_CLI  spring      53.0     56.0   -3.0       0
+  KXHIGHTMIN-26MAY19       NWS_CLI  spring      55.0     58.0   -3.0       0
+  KXHIGHTOKC-26JUN14       NWS_CLI  summer      79.0     82.0   -3.0       0
+  HIGHCHI-21OCT01          UNSPECIFIED autumn      84.0     86.0   -2.0    None
+  KXHIGHNY-25APR12         NWS_CLI  spring      40.0     42.0   -2.0       0
+  KXHIGHCHI-25APR19        NWS_CLI  spring      62.0     64.0   -2.0       0
+  D<=0 histogram: -13.0x1  -8.0x2  -4.0x1  -3.0x5  -2.0x7  -1.0x35  -0.8x2  -0.8x8  -0.6x7  -0.6x3  -0.4x6  -0.4x7  -0.2x6  -0.2x1  -0.1x6  -0.1x1  -0.1x2  +0.0x3898
+
+  VIOLATION MARGIN -- further degrees of negative D needed to flip a
+  dominated bucket. 0 = already a violation. Low mass = fragile record.
+  'unreach' = city-days where no amount of downward divergence could flip a
+  bucket, because the settled value sat in the ladder's open-ended lower tail
+  and that bucket's top is at or above the observed max. Those days are
+  structurally incapable of producing a violation and are excluded, not counted
+  as safe -- treating them as safe would inflate the record for free.
+  stratum                  n  unreach   min   p01   p05   p25   p50   max     <=1     <=2     >=3
+  TWC                    217       30     1   1.0   1.0   2.0   2.0     5   14.3%   52.1%   47.9%
+    TWC/summer           217       30     1   1.0   1.0   2.0   2.0     5   14.3%   52.1%   47.9%
+  NWS_CLI              8,406    1,565     0   1.0   1.0   2.0   2.0    22   19.5%   64.3%   35.7%
+    NWS_CLI/winter     1,744      415     0   1.0   1.0   2.0   2.0    22   24.6%   69.6%   30.4%
+    NWS_CLI/spring     2,721      480     0   1.0   1.0   2.0   2.0    17   18.7%   62.0%   38.0%
+    NWS_CLI/summer     2,651      392     0   1.0   1.0   2.0   2.0    10   16.6%   62.7%   37.3%
+    NWS_CLI/autumn     1,290      278     0   1.0   1.0   2.0   2.0    10   20.4%   65.2%   34.8%
+  UNSPECIFIED        (no margin computable)
+    UNSPECIFIED/winter (no margin computable)
+    UNSPECIFIED/spring (no margin computable)
+    UNSPECIFIED/summer (no margin computable)
+    UNSPECIFIED/autumn (no margin computable)
+  POOLED               8,623    2,050     0   1.0   1.0   2.0   2.0    22   19.4%   64.0%   36.0%  <- not the headline
+    TWC margin histogram: 1:31  2:82  3:89  4:14  5:1
+    NWS_CLI margin histogram: 0:38  1:1601  2:3766  3:2362  4:509  5:72  6:30  7:14  8:6  9:1  10:3  11:1
+    !! TWC: 52% of eligible city-days sit within 2F of a flip (median margin 2F).
+       The zero-violation record is FRAGILE. A systematic 2F downward
+       shift in this authority's readings would convert a clean record
+       into a leaking one, and the observed left tail already reaches 0.0F.
+    !! NWS_CLI: 64% of eligible city-days sit within 2F of a flip (median margin 2F).
+       The zero-violation record is FRAGILE. A systematic 2F downward
+       shift in this authority's readings would convert a clean record
+       into a leaking one, and the observed left tail already reaches -13.0F.
+
+  SECONDARY -- dominated buckets that settled Yes (sec.5)
+  Violations counted at three units. The triple count is sec.5's literal
+  measure; one bad city-day recurs at every afternoon hour, so city-days
+  and dates are what correspond to independent events.
+  stratum              dom-hours  dates   viol  v-days  v-dates      rate    95% CI (date-clustered)      3/k
+  TWC                      5,169     12      0       0        0   0.0000%        n/a (no violations)   0.2500
+    TWC/summer             5,169     12      0       0        0   0.0000%        n/a (no violations)   0.2500
+  NWS_CLI                274,552  1,558    511      39       39   0.1861%         [0.1306%, 0.2481%]      n/a
+    NWS_CLI/winter        72,576    359    116      10       10   0.1598%         [0.0643%, 0.2789%]      n/a
+    NWS_CLI/spring        80,919    400    318      23       23   0.3930%         [0.2384%, 0.5548%]      n/a
+    NWS_CLI/summer        72,008    438     52       4        4   0.0722%         [0.0162%, 0.1497%]      n/a
+    NWS_CLI/autumn        49,049    361     25       2        2   0.0510%         [0.0000%, 0.1378%]      n/a
+  UNSPECIFIED                  0      0      0       0        0       n/a        n/a (no violations)      n/a
+    UNSPECIFIED/winter           0      0      0       0        0       n/a        n/a (no violations)      n/a
+    UNSPECIFIED/spring           0      0      0       0        0       n/a        n/a (no violations)      n/a
+    UNSPECIFIED/summer           0      0      0       0        0       n/a        n/a (no violations)      n/a
+    UNSPECIFIED/autumn           0      0      0       0        0       n/a        n/a (no violations)      n/a
+  POOLED                 279,721  1,570    511      39       39   0.1827%         [0.1281%, 0.2445%]      n/a  <-
+
+  sec.5 pre-committed interpretation
+    TWC                clean (5,169 dominated-bucket-hours)
+      TWC/summer       clean (5,169 dominated-bucket-hours)
+    NWS_CLI            FLOOR LEAKS at 0.1861% -- price the leak into every trade
+      NWS_CLI/winter   FLOOR LEAKS at 0.1598% -- price the leak into every trade
+      NWS_CLI/spring   FLOOR LEAKS at 0.3930% -- price the leak into every trade  -- but the CI upper bound reaches 0.5548%, at or past the 0.5% kill line
+      NWS_CLI/summer   FLOOR LEAKS at 0.0722% -- price the leak into every trade
+      NWS_CLI/autumn   FLOOR LEAKS at 0.0510% -- price the leak into every trade
+    UNSPECIFIED        no data
+      UNSPECIFIED/winter no data
+      UNSPECIFIED/spring no data
+      UNSPECIFIED/summer no data
+      UNSPECIFIED/autumn no data
+    POOLED             FLOOR LEAKS at 0.1827% -- price the leak into every trade
+
+  EVERY VIOLATION, INDIVIDUALLY (511 total, showing 12)
+  city-day                 auth     season    H bucket    range         M_H  obs max  settled settled bucket
+  HIGHAUS-24MAR17          NWS_CLI  spring    9 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   10 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   11 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   12 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   13 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   14 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   15 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   16 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   17 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   18 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   19 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   20 B65.5     65-66        67.0     67.0     66.0 65-66         
+
+============================================================================================================
+VARIANT: ROUNDED  (observations rounded half-up to whole degrees)
+  city-days skipped: {'no settled value and no single winner': 4}
+
+  PRIMARY -- D = settled value minus final observed max, degrees F
+  Full distribution. Summary stats hide the shape of the left tail and
+  every dollar of this strategy's risk lives there.
+  stratum               days  dates   exact   mean    sd   min   p01   p05   p25   p50   p75   p95   p99   max   D<0  indet
+  TWC                    247     12     247   0.86  0.67   0.0   0.0   0.0   0.0   1.0   1.0   2.0   2.0   3.0     0      0
+    TWC/summer           247     12     247   0.86  0.67   0.0   0.0   0.0   0.0   1.0   1.0   2.0   2.0   3.0     0      0
+  NWS_CLI              9,971  1,623   9,510   0.72  0.74 -13.0   0.0   0.0   0.0   1.0   1.0   2.0   3.0  13.0    66    341
+    NWS_CLI/winter     2,159    360   1,884   0.58  0.78  -8.0   0.0   0.0   0.0   0.0   1.0   2.0   3.0  13.0    11    207
+    NWS_CLI/spring     3,201    457   3,201   0.74  0.78 -13.0  -1.0   0.0   0.0   1.0   1.0   2.0   3.0   5.0    38      0
+    NWS_CLI/summer     3,043    442   3,043   0.80  0.71  -4.0   0.0   0.0   0.0   1.0   1.0   2.0   3.0   4.0    14      0
+    NWS_CLI/autumn     1,568    364   1,382   0.70  0.66  -1.0   0.0   0.0   0.0   1.0   1.0   2.0   2.0   3.0     3    134
+  UNSPECIFIED            455    262     455   0.54  0.84  -8.0  -0.5   0.0   0.0   0.0   1.0   2.0   3.0   4.0     5      0
+    UNSPECIFIED/winter     176     88     176   0.52  0.75   0.0   0.0   0.0   0.0   0.0   1.0   2.0   4.0   4.0     0      0
+    UNSPECIFIED/spring      60     57      60   0.48  1.32  -8.0  -3.9  -0.0   0.0   1.0   1.0   2.0   2.0   2.0     3      0
+    UNSPECIFIED/summer      38     26      38   0.89  0.83   0.0   0.0   0.0   0.0   1.0   1.0   2.1   3.0   3.0     0      0
+    UNSPECIFIED/autumn     181     91     181   0.51  0.69  -2.0  -0.2   0.0   0.0   0.0   1.0   2.0   2.0   3.0     2      0
+  POOLED              10,673  1,843  10,212   0.72  0.75 -13.0   0.0   0.0   0.0   1.0   1.0   2.0   3.0  13.0    71    341  <- not the headline
+
+  LEFT TAIL, ENUMERATED -- every city-day with D <= 0
+  71 city-days with D < 0, 3964 with D == 0, out of 10,212 with an exact value
+  city-day                 auth     season   settled  obs max      D  margin
+  KXHIGHDEN-26APR17        NWS_CLI  spring      41.0     54.0  -13.0       0
+  HIGHCHI-22MAR31          UNSPECIFIED spring      50.0     58.0   -8.0    None
+  KXHIGHNY-24DEC29         NWS_CLI  winter      60.0     68.0   -8.0       0
+  KXHIGHNY-25JUN02         NWS_CLI  summer      66.0     70.0   -4.0    None
+  KXHIGHNY-26MAR17         NWS_CLI  spring      48.0     51.0   -3.0    None
+  KXHIGHPHIL-26APR02       NWS_CLI  spring      58.0     61.0   -3.0       0
+  KXHIGHTBOS-26APR20       NWS_CLI  spring      53.0     56.0   -3.0       0
+  KXHIGHTMIN-26MAY19       NWS_CLI  spring      55.0     58.0   -3.0       0
+  KXHIGHTOKC-26JUN14       NWS_CLI  summer      79.0     82.0   -3.0       0
+  HIGHCHI-21OCT01          UNSPECIFIED autumn      84.0     86.0   -2.0    None
+  KXHIGHNY-25APR12         NWS_CLI  spring      40.0     42.0   -2.0       0
+  KXHIGHCHI-25APR19        NWS_CLI  spring      62.0     64.0   -2.0       0
+  D<=0 histogram: -13.0x1  -8.0x2  -4.0x1  -3.0x5  -2.0x7  -1.0x55  +0.0x3964
+
+  VIOLATION MARGIN -- further degrees of negative D needed to flip a
+  dominated bucket. 0 = already a violation. Low mass = fragile record.
+  'unreach' = city-days where no amount of downward divergence could flip a
+  bucket, because the settled value sat in the ladder's open-ended lower tail
+  and that bucket's top is at or above the observed max. Those days are
+  structurally incapable of producing a violation and are excluded, not counted
+  as safe -- treating them as safe would inflate the record for free.
+  stratum                  n  unreach   min   p01   p05   p25   p50   max     <=1     <=2     >=3
+  TWC                    217       30     1   1.0   1.0   2.0   2.0     5   14.3%   52.1%   47.9%
+    TWC/summer           217       30     1   1.0   1.0   2.0   2.0     5   14.3%   52.1%   47.9%
+  NWS_CLI              8,405    1,566     0   1.0   1.0   2.0   2.0    22   19.3%   64.2%   35.8%
+    NWS_CLI/winter     1,744      415     0   1.0   1.0   2.0   2.0    22   24.1%   69.5%   30.5%
+    NWS_CLI/spring     2,721      480     0   1.0   1.0   2.0   2.0    17   18.7%   61.9%   38.1%
+    NWS_CLI/summer     2,651      392     0   1.0   1.0   2.0   2.0    10   16.4%   62.6%   37.4%
+    NWS_CLI/autumn     1,289      279     0   1.0   1.0   2.0   2.0    10   20.2%   65.1%   34.9%
+  UNSPECIFIED        (no margin computable)
+    UNSPECIFIED/winter (no margin computable)
+    UNSPECIFIED/spring (no margin computable)
+    UNSPECIFIED/summer (no margin computable)
+    UNSPECIFIED/autumn (no margin computable)
+  POOLED               8,622    2,051     0   1.0   1.0   2.0   2.0    22   19.2%   63.9%   36.1%  <- not the headline
+    TWC margin histogram: 1:31  2:82  3:89  4:14  5:1
+    NWS_CLI margin histogram: 0:29  1:1594  2:3773  3:2366  4:511  5:74  6:30  7:14  8:6  9:1  10:3  11:1
+    !! TWC: 52% of eligible city-days sit within 2F of a flip (median margin 2F).
+       The zero-violation record is FRAGILE. A systematic 2F downward
+       shift in this authority's readings would convert a clean record
+       into a leaking one, and the observed left tail already reaches 0.0F.
+    !! NWS_CLI: 64% of eligible city-days sit within 2F of a flip (median margin 2F).
+       The zero-violation record is FRAGILE. A systematic 2F downward
+       shift in this authority's readings would convert a clean record
+       into a leaking one, and the observed left tail already reaches -13.0F.
+
+  SECONDARY -- dominated buckets that settled Yes (sec.5)
+  Violations counted at three units. The triple count is sec.5's literal
+  measure; one bad city-day recurs at every afternoon hour, so city-days
+  and dates are what correspond to independent events.
+  stratum              dom-hours  dates   viol  v-days  v-dates      rate    95% CI (date-clustered)      3/k
+  TWC                      5,169     12      0       0        0   0.0000%        n/a (no violations)   0.2500
+    TWC/summer             5,169     12      0       0        0   0.0000%        n/a (no violations)   0.2500
+  NWS_CLI                274,275  1,558    402      29       29   0.1466%         [0.0961%, 0.2043%]      n/a
+    NWS_CLI/winter        72,462    359     41       3        3   0.0566%         [0.0000%, 0.1304%]      n/a
+    NWS_CLI/spring        80,879    400    318      23       23   0.3932%         [0.2385%, 0.5552%]      n/a
+    NWS_CLI/summer        71,924    438     28       2        2   0.0389%         [0.0000%, 0.1010%]      n/a
+    NWS_CLI/autumn        49,010    361     15       1        1   0.0306%         [0.0000%, 0.0957%]      n/a
+  UNSPECIFIED                  0      0      0       0        0       n/a        n/a (no violations)      n/a
+    UNSPECIFIED/winter           0      0      0       0        0       n/a        n/a (no violations)      n/a
+    UNSPECIFIED/spring           0      0      0       0        0       n/a        n/a (no violations)      n/a
+    UNSPECIFIED/summer           0      0      0       0        0       n/a        n/a (no violations)      n/a
+    UNSPECIFIED/autumn           0      0      0       0        0       n/a        n/a (no violations)      n/a
+  POOLED                 279,444  1,570    402      29       29   0.1439%         [0.0943%, 0.2008%]      n/a  <-
+
+  sec.5 pre-committed interpretation
+    TWC                clean (5,169 dominated-bucket-hours)
+      TWC/summer       clean (5,169 dominated-bucket-hours)
+    NWS_CLI            FLOOR LEAKS at 0.1466% -- price the leak into every trade
+      NWS_CLI/winter   FLOOR LEAKS at 0.0566% -- price the leak into every trade
+      NWS_CLI/spring   FLOOR LEAKS at 0.3932% -- price the leak into every trade  -- but the CI upper bound reaches 0.5552%, at or past the 0.5% kill line
+      NWS_CLI/summer   FLOOR LEAKS at 0.0389% -- price the leak into every trade
+      NWS_CLI/autumn   FLOOR LEAKS at 0.0306% -- price the leak into every trade
+    UNSPECIFIED        no data
+      UNSPECIFIED/winter no data
+      UNSPECIFIED/spring no data
+      UNSPECIFIED/summer no data
+      UNSPECIFIED/autumn no data
+    POOLED             FLOOR LEAKS at 0.1439% -- price the leak into every trade
+
+  EVERY VIOLATION, INDIVIDUALLY (402 total, showing 12)
+  city-day                 auth     season    H bucket    range         M_H  obs max  settled settled bucket
+  HIGHAUS-24MAR17          NWS_CLI  spring    9 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   10 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   11 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   12 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   13 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   14 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   15 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   16 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   17 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   18 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   19 B65.5     65-66        67.0     67.0     66.0 65-66         
+  HIGHAUS-24MAR17          NWS_CLI  spring   20 B65.5     65-66        67.0     67.0     66.0 65-66         
+
+============================================================================================================
+POWER -- what these bounds actually support
+  TWC        12 independent dates -> honest 95% upper bound  25.00% per date   (the per-triple figure 0.05804% is an artefact of treating one weather day as 430 observations)
+
+  THE TWC STRATUM IS UNDERPOWERED AND MORE HISTORY DOES NOT FIX IT.
+  12 independent dates gives a rule-of-three bound of 25% per date. TWC settlement began
+  ~2026-08-13, so this stratum grows only with the calendar, at ~21 city-days
+  per day. Read a clean TWC result as 'no evidence of a leak', never as
+  'the floor holds'. Correction 1 is explicit that the deep archive answers
+  seasonality and strategy questions and does not answer this one.
+
+============================================================================================================
+WHAT NWS SAYS ABOUT TWC -- the strata are not independent evidence
+  The NWS Climatological Report derives from the same ASOS observations IEM
+  serves, so its divergence from them was expected to be near-tautological.
+  It diverged anyway: 89 of 9,510 NWS city-days have D < 0 (0.936%).
+
+  Applying that rate to the TWC stratum's 247 city-days:
+    expected D<0 city-days under the NWS rate : 2.31
+    observed  D<0 city-days in TWC            : 0
+    P(observing zero | NWS rate)              : 0.098
+
+  So TWC's clean record is entirely consistent with a divergence rate
+  this sample cannot detect. If the near-tautological source diverges, the
+  prior that a genuinely independent commercial source also goes negative
+  given more dates should go UP, not down. Read the TWC stratum as
+  'underpowered and so far unfalsified', never as 'the floor holds'.
+
+  ROUNDING: variants DISAGREE -- sec.5 says report both and take the pessimistic one: NWS_CLI 511 vs 402, NWS_CLI/winter 116 vs 41, NWS_CLI/summer 52 vs 28, NWS_CLI/autumn 25 vs 15, POOLED 511 vs 402
+
+  wrote data/test_a_results.json

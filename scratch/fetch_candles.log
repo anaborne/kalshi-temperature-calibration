@@ -1,0 +1,143 @@
+== candlestick pull: 58,101 to fetch, 2,805 cached, tiers {'live': 8202, 'historical': 52704} ==
+  [   500/58,101] fetched=500 empty=0 err=0 4.1/s  ~236 min left
+  [ 1,000/58,101] fetched=1,000 empty=0 err=0 3.9/s  ~245 min left
+  !! HIGHAUS-23OCT22-T90: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/HIGHAUS-23OCT22-T90/candlesticks {'period_interval': 60, 'start_ts': 1697691540, 'end_ts': 1698123540} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [ 1,500/58,101] fetched=1,499 empty=0 err=1 3.9/s  ~240 min left
+  [ 2,000/58,101] fetched=1,999 empty=0 err=1 3.9/s  ~238 min left
+  !! HIGHAUS-24FEB12-B55.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/HIGHAUS-24FEB12-B55.5/candlesticks {'period_interval': 60, 'start_ts': 1707458340, 'end_ts': 1707890340} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [ 2,500/58,101] fetched=2,498 empty=0 err=2 3.9/s  ~238 min left
+  [ 3,000/58,101] fetched=2,998 empty=0 err=2 3.9/s  ~235 min left
+nohup: setsid: No such file or directory
+== candlestick pull: 54,736 to fetch, 6,170 cached, tiers {'live': 8202, 'historical': 52704} ==
+  !! KXHIGHAUS-24NOV23-B76.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHAUS-24NOV23-B76.5/candlesticks {'period_interval': 60, 'start_ts': 1732082340, 'end_ts': 1732514340} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [   500/54,736] fetched=499 empty=0 err=1 3.8/s  ~236 min left
+  !! KXHIGHAUS-25AUG07-B97.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHAUS-25AUG07-B97.5/candlesticks {'period_interval': 60, 'start_ts': 1754283540, 'end_ts': 1754715540} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [ 1,000/54,736] fetched=998 empty=0 err=2 3.9/s  ~230 min left
+  [ 1,500/54,736] fetched=1,498 empty=0 err=2 3.9/s  ~226 min left
+  !! KXHIGHAUS-25MAY07-B87.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHAUS-25MAY07-B87.5/candlesticks {'period_interval': 60, 'start_ts': 1746334740, 'end_ts': 1746766740} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [ 2,000/54,736] fetched=1,997 empty=0 err=3 3.9/s  ~225 min left
+  [ 2,500/54,736] fetched=2,497 empty=0 err=3 3.9/s  ~223 min left
+  [ 3,000/54,736] fetched=2,997 empty=0 err=3 3.9/s  ~220 min left
+  [ 3,500/54,736] fetched=3,497 empty=0 err=3 3.9/s  ~219 min left
+  [ 4,000/54,736] fetched=3,997 empty=0 err=3 3.9/s  ~216 min left
+  [ 4,500/54,736] fetched=4,497 empty=0 err=3 3.9/s  ~214 min left
+  !! HIGHCHI-22OCT22-B79.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/HIGHCHI-22OCT22-B79.5/candlesticks {'period_interval': 60, 'start_ts': 1666151940, 'end_ts': 1666583940} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  !! HIGHCHI-22OCT29-B67.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/HIGHCHI-22OCT29-B67.5/candlesticks {'period_interval': 60, 'start_ts': 1666756740, 'end_ts': 1667188740} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [ 5,000/54,736] fetched=4,995 empty=0 err=5 3.9/s  ~212 min left
+  [ 5,500/54,736] fetched=5,495 empty=0 err=5 3.9/s  ~210 min left
+  [ 6,000/54,736] fetched=5,995 empty=0 err=5 3.9/s  ~207 min left
+  !! HIGHCHI-23MAR15-T55: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/HIGHCHI-23MAR15-T55/candlesticks {'period_interval': 60, 'start_ts': 1678593540, 'end_ts': 1679025540} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [ 6,500/54,736] fetched=6,494 empty=0 err=6 3.9/s  ~206 min left
+  [ 7,000/54,736] fetched=6,994 empty=0 err=6 3.9/s  ~204 min left
+  !! HIGHCHI-23OCT23-B65.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/HIGHCHI-23OCT23-B65.5/candlesticks {'period_interval': 60, 'start_ts': 1697774340, 'end_ts': 1698206340} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  !! HIGHCHI-23SEP27-T65: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/HIGHCHI-23SEP27-T65/candlesticks {'period_interval': 60, 'start_ts': 1695527940, 'end_ts': 1695959940} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [ 7,500/54,736] fetched=7,492 empty=0 err=8 3.9/s  ~201 min left
+  [ 8,000/54,736] fetched=7,992 empty=0 err=8 3.9/s  ~199 min left
+  !! HIGHCHI-24JUL29-B85.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/HIGHCHI-24JUL29-B85.5/candlesticks {'period_interval': 60, 'start_ts': 1721966340, 'end_ts': 1722398340} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  !! HIGHCHI-24JUN10-B66.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/HIGHCHI-24JUN10-B66.5/candlesticks {'period_interval': 60, 'start_ts': 1717732740, 'end_ts': 1718164740} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  !! HIGHCHI-24MAR10-T51: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/HIGHCHI-24MAR10-T51/candlesticks {'period_interval': 60, 'start_ts': 1709787540, 'end_ts': 1710219540} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [ 8,500/54,736] fetched=8,489 empty=0 err=11 3.9/s  ~197 min left
+  [ 9,000/54,736] fetched=8,989 empty=0 err=11 3.9/s  ~195 min left
+  [ 9,500/54,736] fetched=9,489 empty=0 err=11 3.9/s  ~193 min left
+  [10,000/54,736] fetched=9,989 empty=0 err=11 3.9/s  ~191 min left
+  [10,500/54,736] fetched=10,489 empty=0 err=11 3.9/s  ~189 min left
+  [11,000/54,736] fetched=10,989 empty=0 err=11 3.9/s  ~187 min left
+  !! KXHIGHCHI-25NOV14-B62.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHCHI-25NOV14-B62.5/candlesticks {'period_interval': 60, 'start_ts': 1762840740, 'end_ts': 1763272740} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  !! KXHIGHCHI-25NOV17-T53: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHCHI-25NOV17-T53/candlesticks {'period_interval': 60, 'start_ts': 1763099940, 'end_ts': 1763531940} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [11,500/54,736] fetched=11,487 empty=0 err=13 3.9/s  ~185 min left
+  [12,000/54,736] fetched=11,987 empty=0 err=13 3.9/s  ~182 min left
+  !! KXHIGHCHI-26MAR12-T44: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHCHI-26MAR12-T44/candlesticks {'period_interval': 60, 'start_ts': 1773032340, 'end_ts': 1773464340} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [12,500/54,736] fetched=12,486 empty=0 err=14 3.9/s  ~180 min left
+  !! KXHIGHCHI-26MAY20-B57.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHCHI-26MAY20-B57.5/candlesticks {'period_interval': 60, 'start_ts': 1778997540, 'end_ts': 1779429540} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  !! KXHIGHDEN-24DEC11-B54.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHDEN-24DEC11-B54.5/candlesticks {'period_interval': 60, 'start_ts': 1733641140, 'end_ts': 1734073140} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  !! KXHIGHDEN-24NOV22-B67.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHDEN-24NOV22-B67.5/candlesticks {'period_interval': 60, 'start_ts': 1731999540, 'end_ts': 1732431540} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [13,000/54,736] fetched=12,983 empty=0 err=17 3.9/s  ~178 min left
+  [13,500/54,736] fetched=13,483 empty=0 err=17 3.9/s  ~176 min left
+  !! KXHIGHDEN-25JAN21-B43.5: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHDEN-25JAN21-B43.5/candlesticks {'period_interval': 60, 'start_ts': 1737183540, 'end_ts': 1737615540} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [14,000/54,736] fetched=13,982 empty=0 err=18 3.9/s  ~173 min left
+  !! KXHIGHDEN-25MAR25-T72: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHDEN-25MAR25-T72/candlesticks {'period_interval': 60, 'start_ts': 1742623140, 'end_ts': 1743055140} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  !! KXHIGHDEN-25MAY05-T56: GET failed after 6 tries: https://api.elections.kalshi.com/trade-api/v2/historical/markets/KXHIGHDEN-25MAY05-T56/candlesticks {'period_interval': 60, 'start_ts': 1746165540, 'end_ts': 1746597540} :: 429 {"error":{"code":"too_many_requests","message":"too many requests"}}
+  [14,500/54,736] fetched=14,480 empty=0 err=20 3.9/s  ~171 min left
+  [15,000/54,736] fetched=14,980 empty=0 err=20 3.9/s  ~169 min left
+  [15,500/54,736] fetched=15,477 empty=0 err=23 3.9/s  ~167 min left
+  [16,000/54,736] fetched=15,976 empty=0 err=24 3.9/s  ~165 min left
+  [16,500/54,736] fetched=16,475 empty=0 err=25 3.9/s  ~163 min left
+  [17,000/54,736] fetched=16,975 empty=0 err=25 3.9/s  ~161 min left
+  [17,500/54,736] fetched=17,474 empty=0 err=26 3.9/s  ~159 min left
+  [18,000/54,736] fetched=17,974 empty=0 err=26 3.9/s  ~157 min left
+  [18,500/54,736] fetched=18,474 empty=0 err=26 3.9/s  ~155 min left
+  [19,000/54,736] fetched=18,974 empty=0 err=26 3.9/s  ~153 min left
+  [19,500/54,736] fetched=19,474 empty=0 err=26 3.9/s  ~151 min left
+  [20,000/54,736] fetched=19,974 empty=0 err=26 3.9/s  ~149 min left
+  [20,500/54,736] fetched=20,474 empty=0 err=26 3.9/s  ~147 min left
+  [21,000/54,736] fetched=20,973 empty=0 err=27 3.9/s  ~144 min left
+  [21,500/54,736] fetched=21,472 empty=0 err=28 3.9/s  ~142 min left
+  [22,000/54,736] fetched=21,972 empty=0 err=28 3.9/s  ~140 min left
+  [22,500/54,736] fetched=22,471 empty=0 err=29 3.9/s  ~138 min left
+  [23,000/54,736] fetched=22,971 empty=0 err=29 3.9/s  ~136 min left
+  [23,500/54,736] fetched=23,470 empty=0 err=30 3.9/s  ~134 min left
+  [24,000/54,736] fetched=23,970 empty=0 err=30 3.9/s  ~131 min left
+  [24,500/54,736] fetched=24,467 empty=0 err=33 3.9/s  ~129 min left
+  [25,000/54,736] fetched=24,967 empty=0 err=33 3.9/s  ~127 min left
+  [25,500/54,736] fetched=25,467 empty=0 err=33 3.9/s  ~125 min left
+  [26,000/54,736] fetched=25,964 empty=0 err=36 3.9/s  ~123 min left
+  [26,500/54,736] fetched=26,462 empty=0 err=38 3.9/s  ~121 min left
+  [27,000/54,736] fetched=26,961 empty=0 err=39 3.9/s  ~119 min left
+  [27,500/54,736] fetched=27,461 empty=0 err=39 3.9/s  ~116 min left
+  [28,000/54,736] fetched=27,960 empty=0 err=40 3.9/s  ~114 min left
+  [28,500/54,736] fetched=28,460 empty=0 err=40 3.9/s  ~112 min left
+  [29,000/54,736] fetched=28,960 empty=0 err=40 3.9/s  ~110 min left
+  [29,500/54,736] fetched=29,459 empty=0 err=41 3.9/s  ~108 min left
+  [30,000/54,736] fetched=29,959 empty=0 err=41 3.9/s  ~106 min left
+  [30,500/54,736] fetched=30,458 empty=0 err=42 3.9/s  ~104 min left
+  [31,000/54,736] fetched=30,957 empty=0 err=43 3.9/s  ~101 min left
+  [31,500/54,736] fetched=31,457 empty=0 err=43 3.9/s  ~99 min left
+  [32,000/54,736] fetched=31,957 empty=0 err=43 3.9/s  ~97 min left
+  [32,500/54,736] fetched=32,456 empty=0 err=44 3.9/s  ~95 min left
+  [33,000/54,736] fetched=32,955 empty=0 err=45 3.9/s  ~93 min left
+  [33,500/54,736] fetched=33,455 empty=0 err=45 3.9/s  ~91 min left
+  [34,000/54,736] fetched=33,955 empty=0 err=45 3.9/s  ~89 min left
+  [34,500/54,736] fetched=34,454 empty=0 err=46 3.9/s  ~86 min left
+  [35,000/54,736] fetched=34,951 empty=0 err=49 3.9/s  ~84 min left
+  [35,500/54,736] fetched=35,447 empty=0 err=53 3.9/s  ~82 min left
+  [36,000/54,736] fetched=35,947 empty=0 err=53 3.9/s  ~80 min left
+  [36,500/54,736] fetched=36,447 empty=0 err=53 3.9/s  ~78 min left
+  [37,000/54,736] fetched=36,945 empty=0 err=55 3.9/s  ~76 min left
+  [37,500/54,736] fetched=37,445 empty=0 err=55 3.9/s  ~74 min left
+  [38,000/54,736] fetched=37,945 empty=0 err=55 3.9/s  ~72 min left
+  [38,500/54,736] fetched=38,445 empty=0 err=55 3.9/s  ~69 min left
+  [39,000/54,736] fetched=38,938 empty=0 err=62 3.9/s  ~67 min left
+  [39,500/54,736] fetched=39,437 empty=0 err=63 3.9/s  ~65 min left
+  [40,000/54,736] fetched=39,936 empty=0 err=64 3.9/s  ~63 min left
+  [40,500/54,736] fetched=40,430 empty=0 err=70 3.9/s  ~61 min left
+  [41,000/54,736] fetched=40,930 empty=0 err=70 3.9/s  ~59 min left
+  [41,500/54,736] fetched=41,423 empty=0 err=77 3.9/s  ~57 min left
+  [42,000/54,736] fetched=41,922 empty=0 err=78 3.9/s  ~54 min left
+  [42,500/54,736] fetched=42,416 empty=0 err=84 3.9/s  ~52 min left
+  [43,000/54,736] fetched=42,916 empty=0 err=84 3.9/s  ~50 min left
+  [43,500/54,736] fetched=43,414 empty=0 err=86 3.9/s  ~48 min left
+  [44,000/54,736] fetched=43,908 empty=0 err=92 3.9/s  ~46 min left
+  [44,500/54,736] fetched=44,407 empty=0 err=93 3.9/s  ~44 min left
+  [45,000/54,736] fetched=44,901 empty=0 err=99 3.9/s  ~42 min left
+  [45,500/54,736] fetched=45,401 empty=0 err=99 3.9/s  ~40 min left
+  [46,000/54,736] fetched=45,901 empty=0 err=99 3.9/s  ~37 min left
+  [46,500/54,736] fetched=46,395 empty=0 err=105 3.9/s  ~35 min left
+  [47,000/54,736] fetched=46,895 empty=0 err=105 3.9/s  ~33 min left
+  [47,500/54,736] fetched=47,395 empty=0 err=105 3.9/s  ~31 min left
+  [48,000/54,736] fetched=47,888 empty=0 err=112 3.9/s  ~29 min left
+  [48,500/54,736] fetched=48,388 empty=0 err=112 3.9/s  ~27 min left
+  [49,000/54,736] fetched=48,881 empty=0 err=119 3.9/s  ~25 min left
+  [49,500/54,736] fetched=49,381 empty=0 err=119 3.9/s  ~22 min left
+  [50,000/54,736] fetched=49,878 empty=0 err=122 3.9/s  ~20 min left
+  [50,500/54,736] fetched=50,370 empty=0 err=130 3.9/s  ~18 min left
+  [51,000/54,736] fetched=50,869 empty=0 err=131 3.9/s  ~16 min left
+  [51,500/54,736] fetched=51,362 empty=0 err=138 3.9/s  ~14 min left
+  [52,000/54,736] fetched=51,862 empty=0 err=138 3.9/s  ~12 min left
+  [52,500/54,736] fetched=52,355 empty=0 err=145 3.9/s  ~10 min left
+  [53,000/54,736] fetched=52,855 empty=0 err=145 3.9/s  ~7 min left
+  [53,500/54,736] fetched=53,353 empty=0 err=147 3.9/s  ~5 min left
+  [54,000/54,736] fetched=53,847 empty=0 err=153 3.9/s  ~3 min left
+  [54,500/54,736] fetched=54,347 empty=0 err=153 3.9/s  ~1 min left
+  153 markets errored; rerun to retry (nothing was written for them, so they are simply still missing)
+
+  cached 60,753/60,906 markets under data/raw/candles/

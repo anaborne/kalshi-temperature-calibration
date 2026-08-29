@@ -1,0 +1,25 @@
+== cache summary: 21 stations x 32 years (1995-2026) ==
+  [ 1/21] AUS  KXHIGHAUS      290,908 rows  290,819 usable  1998-04-28..2026-08-26  decimal  0 pulled  THIN:1995,1996,1997
+  [ 2/21] MDW  KXHIGHCHI      326,046 rows  321,095 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [ 3/21] DEN  KXHIGHDEN      329,681 rows  328,333 usable  1995-01-04..2026-08-26  decimal  0 pulled
+  [ 4/21] LAX  KXHIGHLAX      320,083 rows  317,873 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [ 5/21] MIA  KXHIGHMIA      315,038 rows  313,416 usable  1995-01-01..2026-08-27  decimal  0 pulled
+  [ 6/21] NYC  KXHIGHNY       322,071 rows  320,678 usable  1995-11-01..2026-08-27  decimal  0 pulled  THIN:1995
+  [ 7/21] PHL  KXHIGHPHIL     347,635 rows  345,685 usable  1995-01-01..2026-08-27  decimal  0 pulled
+  [ 8/21] ATL  KXHIGHTATL     328,166 rows  325,956 usable  1995-01-01..2026-08-27  decimal  0 pulled
+  [ 9/21] BOS  KXHIGHTBOS     337,365 rows  335,250 usable  1995-01-01..2026-08-27  decimal  0 pulled
+  [10/21] DFW  KXHIGHTDAL     325,075 rows  323,710 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [11/21] DCA  KXHIGHTDC      340,176 rows  338,018 usable  1995-01-01..2026-08-27  decimal  0 pulled
+  [12/21] HOU  KXHIGHTHOU     332,651 rows  329,704 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [13/21] LAS  KXHIGHTLV      284,117 rows  283,733 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [14/21] MSP  KXHIGHTMIN     356,262 rows  352,235 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [15/21] MSY  KXHIGHTNOLA    333,083 rows  330,562 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [16/21] OKC  KXHIGHTOKC     321,402 rows  319,149 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [17/21] PHX  KXHIGHTPHX     288,192 rows  287,958 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [18/21] SAN  KXHIGHTSAN     332,910 rows  330,448 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [19/21] SAT  KXHIGHTSATX    338,172 rows  337,178 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [20/21] SEA  KXHIGHTSEA     342,930 rows  340,781 usable  1995-01-01..2026-08-26  decimal  0 pulled
+  [21/21] SFO  KXHIGHTSFO     309,639 rows  307,687 usable  1995-01-01..2026-08-26  decimal  0 pulled
+
+  TOTAL 21 stations  6,821,602 rows  6,780,268 usable  (41,334 dropped: non-numeric tmpf, mostly 'M' for missing)
+  one CSV per station under data/obs/

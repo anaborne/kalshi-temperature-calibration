@@ -1,0 +1,67 @@
+================================================================================================
+SECTION 6 FAIR-VALUE CALIBRATION -- training cities only
+================================================================================================
+
+  FROZEN RULE: observation basis on both sides (Checkpoint 1)   (235,145 evaluated bucket-hours)
+       predicted         n  realised    error  mean fair  mean quote  fair-quote
+    0.00-0.05     112,141     0.097   +0.072      0.007       0.132      -0.125
+    0.05-0.10      16,244     0.209   +0.134      0.074       0.252      -0.178
+    0.10-0.20      27,291     0.257   +0.107      0.147       0.286      -0.139
+    0.20-0.30      19,106     0.331   +0.081      0.245       0.329      -0.084
+    0.30-0.40      11,758     0.373   +0.023      0.347       0.358      -0.011
+    0.40-0.50       6,213     0.360   -0.090      0.446       0.347      +0.099
+    0.50-0.60       3,535     0.310   -0.240      0.537       0.317      +0.220
+    0.60-0.70       2,865     0.301   -0.349      0.652       0.313      +0.339
+    0.70-0.80       2,996     0.353   -0.397      0.746       0.360      +0.386
+    0.80-0.90       4,053     0.474   -0.376      0.857       0.442      +0.415
+    0.90-0.95       3,115     0.571   -0.354      0.925       0.530      +0.395
+    0.95-1.01      25,828     0.713   -0.267      0.992       0.672      +0.320
+    worst absolute calibration error: 0.397
+
+  DIAGNOSTIC ONLY: +1F settlement-basis shift, NOT the frozen rule   (235,145 evaluated bucket-hours)
+       predicted         n  realised    error  mean fair  mean quote  fair-quote
+    0.00-0.05     111,904     0.083   +0.058      0.005       0.117      -0.112
+    0.05-0.10      14,874     0.128   +0.053      0.075       0.188      -0.114
+    0.10-0.20      26,949     0.203   +0.053      0.147       0.247      -0.100
+    0.20-0.30      19,413     0.282   +0.032      0.246       0.302      -0.057
+    0.30-0.40      12,293     0.357   +0.007      0.347       0.346      +0.002
+    0.40-0.50       6,510     0.400   -0.050      0.447       0.374      +0.073
+    0.50-0.60       3,648     0.433   -0.117      0.537       0.392      +0.145
+    0.60-0.70       2,904     0.492   -0.158      0.650       0.430      +0.221
+    0.70-0.80       2,922     0.571   -0.179      0.746       0.488      +0.257
+    0.80-0.90       3,749     0.689   -0.161      0.857       0.578      +0.279
+    0.90-0.95       2,857     0.739   -0.186      0.925       0.641      +0.283
+    0.95-1.01      27,122     0.771   -0.209      0.993       0.735      +0.257
+    worst absolute calibration error: 0.209
+
+  frozen rule worst error 0.397; with a +1F shift 0.209
+  The shift is reported to size a known limitation. It is NOT applied:
+  changing the rule to chase a diagnostic is the sec.8 kill.
+
+================================================================================================
+MODEL vs MARKET -- Brier score on the same bucket-hours (lower is better)
+================================================================================================
+  sec.6 fair value : 0.1739
+  market mid-quote : 0.0772   over 235,145 bucket-hours
+  better calibrated: MARKET  (by 0.0967)
+
+  The quote is a better forecast than the model at every probability bin.
+  This is sec.9's honest prior confirmed rather than refuted: the observation
+  is public and free, and the market already prices it. No recalibration of
+  the model rescues a strategy that has to trade against a better forecast.
+
+------------------------------------------------------------------------------------------------
+ROBUSTNESS -- how the market's forecast is constructed
+------------------------------------------------------------------------------------------------
+  The headline quote is (yes_ask.high + yes_bid.low)/2, the midpoint of the
+  widest spread in the hour. That pair is sec.6's punitive FILL assumption,
+  reused here to score the market. Rescored on the hour's CLOSING mid,
+  over the 235,145 bucket-hours where both closes exist:
+    sec.6 fair value                        : 0.1739
+    market, widest-spread mid (headline)    : 0.0772
+    market, closing mid                     : 0.0683
+  The construction moves the market's Brier by 0.0089 (closing mid is better),
+  against a model-versus-market gap of 0.0967. The choice of
+  quote construction does not decide the comparison.
+
+  wrote figures/calibration.json

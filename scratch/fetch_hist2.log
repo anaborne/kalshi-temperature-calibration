@@ -1,0 +1,99 @@
+== series listing ==
+  cached: data/raw/series/climate_and_weather.json
+  358 series in category 'Climate and Weather'
+
+== universe selection: 56 kept, 302 dropped ==
+  live fee terms across universe (fee_type, fee_multiplier): [('quadratic', 1)]
+
+== settled pull (56 series) ==
+  series              mkts  events  oldest               newest               fee
+  HIGHAUS                0      -1  None                 None                 1
+  HIGHCHI                0      -1  None                 None                 1
+  HIGHMIA                0      -1  None                 None                 1
+  HIGHNY                 0      -1  None                 None                 1
+  KXCITIESWEATHER        0      -1  None                 None                 1
+  KXDENHIGH              0      -1  None                 None                 1
+  KXDVHIGH               0      -1  None                 None                 1
+  KXHIGHAUS            408      -1  None                 None                 1
+  KXHIGHCHI            408      -1  None                 None                 1
+  KXHIGHDEN            408      -1  None                 None                 1
+  KXHIGHHOU              0      -1  None                 None                 1
+  KXHIGHLAX            408      -1  None                 None                 1
+  KXHIGHMIA            408      -1  None                 None                 1
+  KXHIGHNY             408      -1  None                 None                 1
+  KXHIGHOU               0      -1  None                 None                 1
+  KXHIGHPHIL           408      -1  None                 None                 1
+  KXHIGHTATL           408      -1  None                 None                 1
+  KXHIGHTBOS           408      -1  None                 None                 1
+  KXHIGHTCYYZ            0      -1  None                 None                 1
+  KXHIGHTDAL           408      -1  None                 None                 1
+  KXHIGHTDC            408      -1  None                 None                 1
+  KXHIGHTEBBR            0      -1  None                 None                 1
+  KXHIGHTEDDB            0      -1  None                 None                 1
+  KXHIGHTEDDF            0      -1  None                 None                 1
+  KXHIGHTEGLL            0      -1  None                 None                 1
+  KXHIGHTEHAM            0      -1  None                 None                 1
+  KXHIGHTEMPDEN          0      -1  None                 None                 1
+  KXHIGHTEWR             0      -1  None                 None                 1
+  KXHIGHTHOU           408      -1  None                 None                 1
+  KXHIGHTKSAN            0      -1  None                 None                 1
+  KXHIGHTLFPG            0      -1  None                 None                 1
+  KXHIGHTLSGG            0      -1  None                 None                 1
+  KXHIGHTLTFM            0      -1  None                 None                 1
+  KXHIGHTLV            408      -1  None                 None                 1
+  KXHIGHTMIN           408      -1  None                 None                 1
+  KXHIGHTMMMX            0      -1  None                 None                 1
+  KXHIGHTNOLA          408      -1  None                 None                 1
+  KXHIGHTOKC           408      -1  None                 None                 1
+  KXHIGHTOMDB            0      -1  None                 None                 1
+  KXHIGHTPHX           408      -1  None                 None                 1
+  KXHIGHTRJTT            0      -1  None                 None                 1
+  KXHIGHTRKSI            0      -1  None                 None                 1
+  KXHIGHTSAN            42      -1  None                 None                 1
+  KXHIGHTSATX          408      -1  None                 None                 1
+  KXHIGHTSBGR            0      -1  None                 None                 1
+  KXHIGHTSEA           408      -1  None                 None                 1
+  KXHIGHTSFO           408      -1  None                 None                 1
+  KXHIGHTTTN             0      -1  None                 None                 1
+  KXHIGHTVABB            0      -1  None                 None                 1
+  KXHIGHTVHHH            0      -1  None                 None                 1
+  KXHIGHTWSSS            0      -1  None                 None                 1
+  KXHIGHTYSSY            0      -1  None                 None                 1
+  KXHIGHTZBAA            0      -1  None                 None                 1
+  KXHIGHTZSPD            0      -1  None                 None                 1
+  KXHOUHIGH              0      -1  None                 None                 1
+  KXPHILHIGH             0      -1  None                 None                 1
+
+  21 series carry retrievable settled markets; 35 are empty (unlaunched, retired, or outside the window)
+  total settled markets: 8,202
+
+  wrote data/universe.json
+
+== historical tier pull (Correction 1) ==
+  cutoff market_settled_ts = 2026-06-27T00:00:00Z
+  series             days   live  pulled  cached  empty  markets  (6 workers, 4 rps)
+  KXHIGHAUS         1,203     68       0   1,135      4    6,783
+  KXHIGHCHI         1,833     68       3   1,762      4    9,025
+  KXHIGHDEN           644     68       0     576      0    3,456
+  KXHIGHLAX           598     68       0     530      0    3,180
+  KXHIGHMIA         1,203     68       0   1,135      1    6,802
+  KXHIGHNY          1,846     68       3   1,775      4    9,034
+  KXHIGHPHIL          644     68       2     574      0    3,456
+  KXHIGHTATL          203     68       0     135      0      810
+  KXHIGHTBOS          202     68       0     134      0      804
+  KXHIGHTDAL          196     68       0     128      0      768
+  KXHIGHTDC           224     68       0     156      3      918
+  KXHIGHTHOU          196     68       0     128      0      768
+  KXHIGHTLV           224     68       0     156      0      936
+  KXHIGHTMIN          203     68       0     135      0      810
+  KXHIGHTNOLA         224     68       0     156      0      936
+  KXHIGHTOKC          196     68       0     128      0      768
+  KXHIGHTPHX          203     68       0     135      0      810
+  KXHIGHTSAN            7      7       0       0      0        0
+  KXHIGHTSATX         196     68       0     128      0      768
+  KXHIGHTSEA          224     68       0     156      0      936
+  KXHIGHTSFO          224     68       0     156      0      936
+  wrote data/historical_index.json
+
+== parsing cache ==
+  wrote data/parsed/markets.jsonl (60,906 rows: {'live': 8202, 'historical': 52704})

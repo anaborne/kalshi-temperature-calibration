@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 496" width="780" height="496" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif">
+<rect width="780" height="496" fill="#ffffff"/>
+<line x1="68.0" y1="88" x2="68.0" y2="418" stroke="#e3e7ec" stroke-width="1"/>
+<line x1="68" y1="418.0" x2="750" y2="418.0" stroke="#e3e7ec" stroke-width="1"/>
+<text x="68.0" y="438" font-size="11.5" fill="#5a636e" text-anchor="middle">0.0</text>
+<text x="58" y="422.0" font-size="11.5" fill="#5a636e" text-anchor="end">0.0</text>
+<line x1="204.4" y1="88" x2="204.4" y2="418" stroke="#e3e7ec" stroke-width="1"/>
+<line x1="68" y1="352.0" x2="750" y2="352.0" stroke="#e3e7ec" stroke-width="1"/>
+<text x="204.4" y="438" font-size="11.5" fill="#5a636e" text-anchor="middle">0.2</text>
+<text x="58" y="356.0" font-size="11.5" fill="#5a636e" text-anchor="end">0.2</text>
+<line x1="340.8" y1="88" x2="340.8" y2="418" stroke="#e3e7ec" stroke-width="1"/>
+<line x1="68" y1="286.0" x2="750" y2="286.0" stroke="#e3e7ec" stroke-width="1"/>
+<text x="340.8" y="438" font-size="11.5" fill="#5a636e" text-anchor="middle">0.4</text>
+<text x="58" y="290.0" font-size="11.5" fill="#5a636e" text-anchor="end">0.4</text>
+<line x1="477.2" y1="88" x2="477.2" y2="418" stroke="#e3e7ec" stroke-width="1"/>
+<line x1="68" y1="220.0" x2="750" y2="220.0" stroke="#e3e7ec" stroke-width="1"/>
+<text x="477.2" y="438" font-size="11.5" fill="#5a636e" text-anchor="middle">0.6</text>
+<text x="58" y="224.0" font-size="11.5" fill="#5a636e" text-anchor="end">0.6</text>
+<line x1="613.6" y1="88" x2="613.6" y2="418" stroke="#e3e7ec" stroke-width="1"/>
+<line x1="68" y1="154.0" x2="750" y2="154.0" stroke="#e3e7ec" stroke-width="1"/>
+<text x="613.6" y="438" font-size="11.5" fill="#5a636e" text-anchor="middle">0.8</text>
+<text x="58" y="158.0" font-size="11.5" fill="#5a636e" text-anchor="end">0.8</text>
+<line x1="750.0" y1="88" x2="750.0" y2="418" stroke="#e3e7ec" stroke-width="1"/>
+<line x1="68" y1="88.0" x2="750" y2="88.0" stroke="#e3e7ec" stroke-width="1"/>
+<text x="750.0" y="438" font-size="11.5" fill="#5a636e" text-anchor="middle">1.0</text>
+<text x="58" y="92.0" font-size="11.5" fill="#5a636e" text-anchor="end">1.0</text>
+<line x1="68.0" y1="418.0" x2="750.0" y2="88.0" stroke="#5a636e" stroke-width="1.3" stroke-dasharray="5 4"/>
+<path d="M76.0,417.1 L115.9,407.0 L165.4,387.1 L236.0,355.2 L305.0,319.2 L375.1,288.8 L431.5,252.2 L505.7,187.0 L576.2,139.1 L647.9,106.5 L698.9,93.0 L742.8,88.4" fill="none" stroke="#2f6f9f" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="76.0" cy="417.1" r="8.54" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="115.9" cy="407.0" r="5.20" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="165.4" cy="387.1" r="5.36" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="236.0" cy="355.2" r="4.98" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="305.0" cy="319.2" r="4.87" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="375.1" cy="288.8" r="4.87" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="431.5" cy="252.2" r="5.05" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="505.7" cy="187.0" r="4.24" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="576.2" cy="139.1" r="3.93" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="647.9" cy="106.5" r="3.82" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="698.9" cy="93.0" r="3.58" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="742.8" cy="88.4" r="5.30" fill="#2f6f9f" stroke="#ffffff" stroke-width="1.1"/>
+<path d="M72.6,385.9 L118.5,348.9 L168.2,333.1 L235.4,308.9 L304.7,294.8 L372.3,299.3 L434.0,315.7 L512.7,318.6 L576.7,301.6 L652.3,261.6 L699.0,229.5 L744.5,182.8" fill="none" stroke="#c1483a" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="72.6" cy="385.9" r="9.00" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="118.5" cy="348.9" r="5.04" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="168.2" cy="333.1" r="5.76" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="235.4" cy="308.9" r="5.24" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="304.7" cy="294.8" r="4.67" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="372.3" cy="299.3" r="4.11" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="434.0" cy="315.7" r="3.74" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="512.7" cy="318.6" r="3.62" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="576.7" cy="301.6" r="3.65" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="652.3" cy="261.6" r="3.82" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="699.0" cy="229.5" r="3.67" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<circle cx="744.5" cy="182.8" r="5.67" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
+<text x="68" y="28" font-size="15.5" font-weight="600" fill="#1b1f24">The market is the better forecaster at every probability</text>
+<text x="68" y="50" font-size="12" fill="#5a636e">Reliability on each forecaster’s own bins, 235,145 bucket-hours, training cities.</text>
+<text x="68" y="68" font-size="11.5" fill="#5a636e">Dashed line is perfect calibration; marker area ∝ bin count.</text>
+<circle cx="84" cy="108.0" r="5" fill="#c1483a"/>
+<text x="98" y="112.0" font-size="12.5" fill="#1b1f24"><tspan fill="#c1483a" font-weight="600">§6 fair value</tspan>, says 0.99, settles 0.71</text>
+<circle cx="84" cy="130.0" r="5" fill="#2f6f9f"/>
+<text x="98" y="134.0" font-size="12.5" fill="#1b1f24"><tspan fill="#2f6f9f" font-weight="600">Kalshi mid-quote</tspan>, says 0.99, settles 1.00</text>
+<text x="68" y="478" font-size="11.5" fill="#5a636e">Brier score, lower is better: <tspan fill="#c1483a" font-weight="600">model 0.1739</tspan> · <tspan fill="#2f6f9f" font-weight="600">market 0.0772</tspan></text>
+<text x="409" y="460" font-size="12" fill="#1b1f24" text-anchor="middle">forecast probability</text>
+<text x="16" y="253" font-size="12" fill="#1b1f24" text-anchor="middle" transform="rotate(-90 16 253)">realised settle rate</text>
+</svg>
