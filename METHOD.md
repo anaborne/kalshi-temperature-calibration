@@ -11,10 +11,10 @@ wrote turns out to be wrong. The test itself is described in
 
 I append corrections and never edit one in place. A correction gets its own
 dated section, states plainly what the earlier text got wrong, and leaves the
-wrong text standing above it. `PREREGISTRATION.md` carries three of them, all
-retracting my own earlier reasoning, and `RESULTS.md` carries two more. The
-error trail is part of the record, so nothing here is quietly revised into
-looking better than it was.
+wrong text standing above it. `PREREGISTRATION.md` carries four numbered ones
+and three dated notes inside them, all retracting my own earlier reasoning, and
+`RESULTS.md` carries nine dated ones. The error trail is part of the record, so
+nothing here is quietly revised into looking better than it was.
 
 ## The failure that produced this
 

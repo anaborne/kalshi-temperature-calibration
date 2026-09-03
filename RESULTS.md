@@ -39,6 +39,16 @@ from 6,821,602. The exact counts are `scratch/fetch_obs.log`, summed over the
 1995-2026 pass. A repo that argues for running the cheap check at the moment of
 writing does not get to round in its own favour.*
 
+*Corrected 2026-09-03, candlestick row. That row rests the final 60,906 / 60,906
+count on `fetch_candles.py --status` at the time and on the commit message of the
+commit that completed the cache. Neither is in this repository. `git rev-list
+--count HEAD` returns 1: the repository was republished as a single commit,
+`4ee3b84`, on 2026-08-29, the commit named there no longer exists in its history,
+and the `--status` output was never committed. So the final count has no
+committed source. What is checkable is `scratch/fetch_candles.log`, which ends at
+60,753 cached with 153 markets errored on HTTP 429. `README.md` carries the
+single-commit disclaimer for the pre-registration timestamps only.*
+
 **Two tiers.** An earlier pass of mine reported a hard 68-day
 market history and asserted no archive existed. That was wrong and the assertion
 was made without checking. Kalshi tiers settled markets at
@@ -165,6 +175,27 @@ evidence anywhere in this project below roughly 11¢, by anyone, in any later
 section. Where systematic effects matter, use a signed mean, where noise cancels
 across cells and bias survives.
 
+*Corrected 2026-09-03. The floor in that table is measured on the wrong sample
+shape and is several times too wide. The null splits the modern era (2010-2024,
+about 5,479 days) into two disjoint halves of about 2,739 days each. The
+comparison it judges is a table on 1995-2024, about 10,958 days, against a table
+on 2010-2024, a superset against a subset of itself. The two share every day the
+smaller one has. The sampling standard deviation of a per-cell difference scales
+as sqrt(1/n1 + 1/n2) for two disjoint halves and as sqrt((nA−nB)/nA² +
+(nA−nB)²/(nA²nB)) for a nested pair, which puts the printed floor about 2.8×
+too wide for the "1995 vs 2010" column and about 4.0× too wide for the "2005 vs
+2010" column. Rescaled, the floors against the 1995 column are NYC 3.90¢, MDW
+4.23¢, LAX 3.76¢, SAN 4.08¢, PHL 3.93¢, and all five observed differences sit
+above their floor. Against the 2005 column the rescaled floors run 2.7¢ to 3.0¢
+and four of the five observed differences sit above them. The sentence above
+retracting the earlier 7.47¢ NYC citation therefore does not stand: 7.47¢ is
+about 1.9× its correctly scaled floor. The "uninformative below roughly 11¢" rule stated
+here, carried forward at §8's first caveat and in `README.md`, is calibrated to
+a sample shape this project never used. `check_depth_bias.py` now builds the
+null at the sizes and the nesting of the comparison it benchmarks. The table
+above is not re-run here, because the `data/` observation cache is not
+committed.*
+
 ### 3.2 TWC is in the clean band, and the power limit travels with it
 
 Test B proceeds because TWC's stratum is clean by §5's pre-committed table. That
@@ -238,6 +269,15 @@ reporting-density step change (24 → ~30 obs/day at 2005, worth +0.122°F of me
 residual at H=13, t = +4.5, and −0.013¢ of signed fair value). Choosing a cutoff
 because it improves a diagnostic is selecting a nuisance parameter on that
 diagnostic, which is the tuning pattern §6 exists to prevent.
+
+*Corrected 2026-09-03. "24 → ~30 obs/day at 2005" has no committed source.
+`check_depth_bias.py` fixes its eras at 1995-2009 and 2010-2024, so nothing in
+this repository measures a density break at 2005, for NYC or anywhere else. The
+committed pair is 26.1 → 30.7 obs/day across the 1995-2009 / 2010-2024 boundary
+(`scratch/check_depth_bias.log:41`). The +0.122°F of mean residual at H=13, with
+t = +4.5 and −0.013¢ of signed fair value, checks out as printed
+(`scratch/check_depth_bias.log:96`), and the reason for rejecting a 2005 start is
+unaffected.*
 
 **Station mapping caught a real error.** `KXHIGHTHOU` is Houston Hobby
 (`CLIHOU`), not Bush Intercontinental. IAH runs +0.38°F *above* settlement across
@@ -331,6 +371,17 @@ A strategy that must trade against a forecast twice as accurate as
 its own does not have a calibration problem to fix; it has no edge to calibrate
 toward.
 
+*Corrected 2026-09-03. "The market quote is the better forecast at every
+probability bin" was never computed. `check_calibration.py` printed that sentence
+whenever the aggregate Brier favoured the market, and no per-bin comparison
+existed anywhere in the pipeline. On the per-bin comparison the committed
+`figures/calibration.json` supports, absolute calibration error inside each
+forecaster's own bins, the quote is closer in eleven of the twelve bins and the
+model is closer in the 0.30-0.40 bin, where the model is off by 0.026 and the
+quote by 0.048. The Brier figures and the factor of more than two are unaffected.
+`check_calibration.py` now computes the per-bin comparison and prints the count
+it finds, and the figure title was corrected in place.*
+
 **How the market's forecast is constructed, and why it does not decide this.**
 The quote scored above is `(yes_ask.high + yes_bid.low) / 2`, the midpoint of
 the *widest* spread observed in the hour. That pair is not chosen here. It is
@@ -386,6 +437,26 @@ Test A's measured leak is why. At −23.46¢/contract it is the worst shape in t
 book, which is the outcome §6 predicted when it said this shape's entire EV
 lives in the tail-error rate.
 
+*Corrected 2026-09-03. 94.9% is the rate at which those buckets settled Yes,
+which for a sell is the rate at which the trade lost. `test_b.py` scored
+`in_bucket(settled, bounds)` for every shape, so the sell row printed the
+complement of the statistic that has to clear the breakeven bar. Those 78 sells
+settled No on 5.1% of trades: the bucket the model called impossible is the one
+that settled, on 74 of 78. The 98.1% breakeven is §6's figure for a 2¢ bucket
+and does not describe this book. The entry rule forces a mean sell price of at
+least 10¢, and −23.46¢/contract against a 94.9% Yes rate puts the mean fill near
+73¢, where breakeven is about 29% settle-No. The shortfall is about 24 points of
+settle-No. The paragraph above reads it as 3.2 points. The attribution to
+Test A's measured leak does not survive either: that leak is 0.186% and the
+in-book Yes rate on these trades is 94.9%, a factor of 500 that the paragraph
+never reconciles. The −23.46¢/contract and the confidence interval are
+unaffected. §6's training-shape table above carries the same inversion: its
+87.2% is the Yes rate on 117 sells, which settled No on 12.8% of trades, and its
+"other" row pools both sides so 66.2% is not one statistic. `test_b.py` now
+scores the statistic side-aware and computes the breakeven from the prices
+actually filled; the committed logs predate that fix and print the uncorrected
+pair.*
+
 ---
 
 ## 8. Verdict
@@ -404,6 +475,15 @@ Correction 1 requires:
 
 Not a near miss in any stratum. Every confidence interval lies wholly below
 zero, on both the i.i.d. and the date-clustered bootstrap.
+
+*Corrected 2026-09-03. That holds as printed for the four seasons and is not
+checkable for the two shapes. `test_b.py` computed the clustered intervals for
+every shape and `by_shape()` printed only the i.i.d. one, so
+`scratch/test_b_holdout.log:13-15` carries no clustered interval and
+`data/test_b_results.json` is not committed. The seasons' clustered intervals are
+at `:23-30` and all lie below zero. The clustered interval matters most for the
+dominated-bucket sell, at 78 trades over 18 dates, where clustering could widen
+it materially. `by_shape()` now prints it, and the committed log predates that.*
 
 No threshold was lowered, no cell key changed, no fill assumption relaxed, and
 the holdout was run once. §8's final criterion, that any such change after

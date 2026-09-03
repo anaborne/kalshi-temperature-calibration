@@ -7,7 +7,10 @@ day" means the local calendar day the contract settles on.
 
 Depth. The archive starts at the ASOS deployment boundary, see ARCHIVE_START.
 sec.6's table is fit on observations alone, so the market sample's date range
-does not bind here, and Correction 2 fixes the far end at 2025-01-01.
+does not bind here. Correction 2 fixes the far end of the FIT window, and
+Correction 4 moves that cutoff to 2021-08-01; the pull itself still runs to the
+end of the settled market window, because check_depth_bias.py reads the later
+years.
 
 Raw per-year responses land under data/raw/obs/<station>/<year>.csv and are
 concatenated into one CSV per station at data/obs/<station>.csv. Chunking by
@@ -48,9 +51,12 @@ OBS = os.path.join(DATA, "obs")
 # reverse-justification, dressing a free choice as a finding.
 #
 # check_depth_bias.py measures what the choice costs: NYC carries a real
-# reporting-density step change at 2005 (24 -> ~30 obs/day) worth +0.122F of
-# mean residual at H=13, which is statistically clear and economically
-# negligible at -0.013c of signed fair value against a 10c entry threshold.
+# reporting-density step change, 26.1 -> 30.7 obs/day across the 1995-2009 /
+# 2010-2024 boundary, worth +0.122F of mean residual at H=13, which is
+# statistically clear and economically negligible at -0.013c of signed fair
+# value against a 10c entry threshold. An earlier version of this comment put
+# the pair at "24 -> ~30 obs/day at 2005"; the eras are fixed at 1995-2009 and
+# 2010-2024, so nothing here measures a break at 2005.
 # A 2005 start would halve that shift, and was rejected: picking a cutoff
 # because it improves a diagnostic is selecting a nuisance parameter on that
 # diagnostic, which is the tuning pattern sec.6 exists to prevent.

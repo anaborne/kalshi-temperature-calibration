@@ -24,11 +24,17 @@ import os
 import statistics
 
 from common import DATA, read_json
-from test_b import HOURS, day_profile, load_obs_rounded, PREPERIOD_END
+from test_b import HOURS, day_profile, load_obs_rounded
 
 OBS = os.path.join(DATA, "obs")
 ERA_A = (1995, 2009)
 ERA_B = (2010, 2024)
+# The era boundary this file reports on. It used to read test_b.PREPERIOD_END,
+# which happened to be 2025-01-01. Correction 4 moved that cutoff to 2021-08-01,
+# and following it here would silently shorten era B to 2010-2020 and change
+# every figure section 3 of RESULTS.md quotes. The eras are named above, so the
+# end of the sample is stated here rather than borrowed.
+ARCHIVE_END = 2025
 
 
 def main():
@@ -45,7 +51,7 @@ def main():
         days = load_obs_rounded(stn)
         for iso, obs in days.items():
             y = int(iso[:4])
-            if y >= PREPERIOD_END.year:
+            if y >= ARCHIVE_END:
                 continue
             per_year[y].append(len(obs))
             era = "A" if y <= ERA_A[1] else "B"
@@ -83,7 +89,7 @@ def main():
         stn = r["proposed_station"]
         for iso, obs in load_obs_rounded(stn).items():
             y = int(iso[:4])
-            if y >= PREPERIOD_END.year or y < ERA_A[0]:
+            if y >= ARCHIVE_END or y < ERA_A[0]:
                 continue
             era = "A" if y <= ERA_A[1] else "B"
             m_h, final = day_profile(obs)
@@ -121,7 +127,7 @@ def main():
     signed_shift(rows)
 
 
-def _rows_for(stn, lo, hi=2025):
+def _rows_for(stn, lo, hi=ARCHIVE_END):
     out = []
     for iso, obs in load_obs_rounded(stn).items():
         y = int(iso[:4])
@@ -155,29 +161,52 @@ def _cells(a, b):
                 yield fair_value(x, 80, bd) - fair_value(y, 80, bd)
 
 
+def _nested_null(pool, n_outer, n_inner, rng, splits):
+    """Sampling spread of the max-cell statistic, at the comparison's own shape.
+
+    The comparison this benchmarks is a table on 1995-2024 against a table on
+    2010-2024: a superset against a subset of itself, sharing every day the
+    smaller one has. A disjoint half-split of the modern era matches neither the
+    sizes nor the overlap, and the sampling spread of a per-cell difference is
+    several times wider for two disjoint halves than for a nested pair, so a
+    floor built that way is several times too high. Both sets here are still
+    drawn from the same era, so bias remains impossible by construction.
+    """
+    out = []
+    for _ in range(splits):
+        outer = [pool[rng.randrange(len(pool))] for _ in range(n_outer)]
+        inner = outer[:]
+        rng.shuffle(inner)
+        out.append(100 * max(abs(d) for d in _cells(_table(outer),
+                                                    _table(inner[:n_inner]))))
+    return out
+
+
 def noise_floor(rows, stations=("NYC", "MDW", "LAX", "SAN", "PHL"), splits=5):
     import random
     print("\n" + "=" * 100)
     print("3. NOISE FLOOR -- what this statistic reports when bias is IMPOSSIBLE")
     print("=" * 100)
-    print("  Two tables from the SAME era (2010-2024), random day split. Any divergence")
-    print("  is pure sampling noise. If it exceeds the depth differences, the max")
-    print("  statistic cannot support a conclusion either way.")
+    print("  Two tables drawn from the SAME era (2010-2024), at the sizes and the")
+    print("  nesting of the depth comparison each column judges. Any divergence is pure")
+    print("  sampling noise. If it exceeds the depth difference, the max statistic")
+    print("  cannot support a conclusion either way.")
+    print("  Correction: this floor was previously built from a disjoint half-split of")
+    print("  the modern era, which is neither the size nor the overlap of the tables it")
+    print("  was compared against, and it came out several times too wide.")
     rng = random.Random(20260827)
-    print(f"\n  {'stn':<4} {'noise floor (mean of %d)' % splits:>26} {'vs 1995':>10} {'vs 2005':>10}")
+    print(f"\n  {'stn':<4} {'floor vs 1995':>14} {'1995 vs 2010':>13} "
+          f"{'floor vs 2005':>14} {'2005 vs 2010':>13}   (mean of %d draws)" % splits)
     for stn in stations:
         modern = _rows_for(stn, 2010)
+        r95, r05 = _rows_for(stn, 1995), _rows_for(stn, 2005)
         ref = _table(modern)
-        ns = []
-        for _ in range(splits):
-            r = modern[:]
-            rng.shuffle(r)
-            h = len(r) // 2
-            ns.append(100 * max(abs(d) for d in _cells(_table(r[:h]), _table(r[h:]))))
-        d95 = 100 * max(abs(d) for d in _cells(_table(_rows_for(stn, 1995)), ref))
-        d05 = 100 * max(abs(d) for d in _cells(_table(_rows_for(stn, 2005)), ref))
-        print(f"  {stn:<4} {statistics.mean(ns):>15.2f}c (max {max(ns):>5.2f}c) "
-              f"{d95:>9.2f}c {d05:>9.2f}c")
+        d95 = 100 * max(abs(d) for d in _cells(_table(r95), ref))
+        d05 = 100 * max(abs(d) for d in _cells(_table(r05), ref))
+        f95 = _nested_null(modern, len(r95), len(modern), rng, splits)
+        f05 = _nested_null(modern, len(r05), len(modern), rng, splits)
+        print(f"  {stn:<4} {statistics.mean(f95):>13.2f}c {d95:>12.2f}c "
+              f"{statistics.mean(f05):>13.2f}c {d05:>12.2f}c")
 
 
 def signed_shift(rows):

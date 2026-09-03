@@ -3,15 +3,17 @@
 No. This repository is the pre-registered test that established it, and the
 record of the test being run.
 
-**The finding.** Over 235,145 evaluated bucket-hours, Kalshi's mid-quote scores a
-Brier of 0.0772 against the strategy model's 0.1739, better than twice as
-accurate, and the better forecast in every probability bin. That gap is the
-conservative version, because the quote is scored on the pre-registered punitive
-fill pair instead of a closing mid, which costs the market 0.0089 of Brier
-(`check_calibration.log:60-63`). On held-out cities the strategy lost money in
-all three trade shapes and all four seasons, and the pre-registered kill
-criterion triggered in every stratum (`check_calibration.log:5,44,45`;
-`test_b_holdout.log:13-15,23-29`).
+**The finding.** Over 235,145 evaluated bucket-hours on the twelve training
+cities, Kalshi's mid-quote scores a Brier of 0.0772 against the strategy model's
+0.1739, better than twice as accurate, and the better-calibrated forecast in
+eleven of twelve probability bins (`check_calibration.log:5,44,45`; the per-bin
+comparison is in [`figures/calibration.json`](figures/calibration.json)). That
+gap is the conservative version, because the quote is scored on the
+pre-registered punitive fill pair instead of a closing mid, which costs the
+market 0.0089 of Brier (`check_calibration.log:60-63`). On held-out cities the
+strategy lost money in all three trade shapes and all four seasons, and the
+pre-registered kill criterion triggered in every stratum
+(`test_b_holdout.log:46-47,50-53`).
 
 The run's stdout is committed under [`scratch/`](scratch/), and every
 measurement in _What was measured_ below cites the log line that produced it, so
@@ -40,8 +42,11 @@ Two tests, both fixed in writing before any backtest data existed:
 - **Test A, the safety test.** Can a bucket the observations have already ruled
   out still settle Yes? This gates everything, because the thesis leans on that
   floor holding.
-- **Test B, the strategy.** Fit a residual-warming table on training cities
-  only, freeze the rule, then run it once on held-out cities.
+- **Test B, the strategy.** Fit a residual-warming table on each city's own
+  weather observations from a frozen pre-period (Correction 2 voids §6's
+  "training cities only" clause, which applied market-holdout hygiene to a
+  component containing no market data), freeze every free choice of the trading
+  rule on training cities, then run it once on held-out cities.
 
 [`PREREGISTRATION.md`](PREREGISTRATION.md) is the binding spec, covering the
 entry rule, fee model, fill assumption, train/holdout split, and five kill
@@ -80,16 +85,27 @@ flip in both regimes, 52.1% on TWC and 64.3% on NWS, so the clean record is thin
 
 **Test B, negative everywhere on holdout.**
 
-| Shape | trades | ¢/contract | settle accuracy | traceable to |
+| Shape | trades | ¢/contract | bucket settles Yes | traceable to |
 |---|---|---|---|---|
-| dominated-bucket sell | 78 | −23.46¢ | 94.9% vs 98.1% needed | `test_b_holdout.log:13,17` |
+| dominated-bucket sell | 78 | −23.46¢ | 94.9% | `test_b_holdout.log:13` |
 | mid-bucket buy | 7,819 | −9.06¢ | 11.1% | `test_b_holdout.log:14` |
 | other | 11,451 | −8.38¢ | 62.8% | `test_b_holdout.log:15` |
 
-Every 95% interval wholly below zero, on both the naive and the date-clustered
-bootstrap. Every season negative, at winter −10.69¢, spring −8.51¢, summer
-−8.12¢, autumn −8.03¢ (`test_b_holdout.log:23-29`, per-season verdicts at
-`:50-53`).
+That column is the rate at which the bucket settled Yes. For a buy that is the
+trade winning; for the dominated-bucket sell it is the trade losing. Those 78
+sells needed the bucket to settle No. It did on 5.1% of them, against the ~29%
+needed to break even at the ~73¢ they filled at. `test_b.py` scored the raw
+settle-Yes flag for every shape and printed 94.9% against a 98.1% breakeven
+figure §6 derives for a 2¢ bucket, well below the price this book filled at.
+Both are fixed in the code and the committed logs predate the fix, so
+`test_b_holdout.log:17` still prints the uncorrected pair.
+
+Every 95% interval wholly below zero. The four seasons clear that on both the
+naive and the date-clustered bootstrap (`test_b_holdout.log:23-30`); for the
+trade shapes only the naive interval was printed, and `by_shape()` now prints
+the clustered one too. Every season negative, at winter −10.69¢, spring −8.51¢,
+summer −8.12¢, autumn −8.03¢ (`test_b_holdout.log:23-29`, per-season verdicts
+at `:50-53`).
 
 **Why it lost.** A losing backtest is either an efficient market or a broken
 estimator, and only a calibration curve separates them. It was both.
@@ -134,9 +150,10 @@ looks like in practice, all of it in the committed record:
   Hobby, not Bush, and Chicago to Midway, not O'Hare. The wrong airport would
   have manufactured floor violations out of nothing.
 - `RESULTS.md` keeps three caveats that would have been load-bearing had the
-  verdict gone the other way (a measured ~11¢ noise floor on max-over-cells
-  statistics, the Weather Company regime's twelve-date record, and its spring
-  blind spot) and a dated correction for rounding 6,821,602 up to "6.9M".
+  verdict gone the other way (a measured noise floor on max-over-cells
+  statistics, which a later correction records as several times too wide, the
+  Weather Company regime's twelve-date record, and its spring blind spot) and a
+  dated correction for rounding 6,821,602 up to "6.9M".
 
 ## Reproducing it
 

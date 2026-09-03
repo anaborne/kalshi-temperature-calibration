@@ -18,7 +18,7 @@ Also reported: the same curve on a settlement-basis shifted table. sec.6 fits R
 from observations on both sides, which Checkpoint 1 requires so the
 observation-to-settlement offset cancels inside the table. But the resulting
 prediction is of the final OBSERVED max, while the bucket settles on the
-authority's value, which Test A measures at roughly +0.8F above it. That is a
+authority's value, which Test A measures at roughly +0.7F above it. That is a
 known, flagged, uncorrected limitation of the frozen rule; this quantifies what
 it costs.
 
@@ -229,6 +229,25 @@ def brier(rel=None):
     return sm / n, sq / n, n, rel, alt
 
 
+def per_bin_calibration(rel):
+    """Which forecaster sits closer to its own realised rate, bin by bin.
+
+    An aggregate Brier says nothing about any individual bin. The claim that the
+    quote wins EVERY bin used to be printed off the aggregate alone, with no
+    per-bin comparison computed anywhere. Each forecaster is binned on its own
+    predictions, so the comparable quantity inside a bin is the gap between mean
+    prediction and realised settle rate.
+    """
+    rows = []
+    for lo, hi in BINS:
+        m, q = rel.get(("model", lo, hi)), rel.get(("market", lo, hi))
+        if not m or not q or not m[0] or not q[0]:
+            continue
+        rows.append((lo, hi, abs(m[2] / m[0] - m[1] / m[0]),
+                     abs(q[2] / q[0] - q[1] / q[0])))
+    return rows
+
+
 if __name__ == "__main__":
     print("=" * 96)
     print("SECTION 6 FAIR-VALUE CALIBRATION -- training cities only")
@@ -249,8 +268,19 @@ if __name__ == "__main__":
     print(f"  market mid-quote : {bq:.4f}   over {n:,} bucket-hours")
     better = "MARKET" if bq < bm else "MODEL"
     print(f"  better calibrated: {better}  (by {abs(bm - bq):.4f})")
+    per_bin = per_bin_calibration(reliability)
+    market_bins = sum(1 for _, _, em, eq in per_bin if eq < em)
+    lost = [f"{lo:.2f}-{hi:.2f}" for lo, hi, em, eq in per_bin if eq >= em]
+    print(f"  per-bin calibration error, each forecaster on its own bins: the quote is")
+    print(f"  closer to its realised rate in {market_bins} of {len(per_bin)} bins"
+          + (f", the model in {', '.join(lost)}" if lost else ""))
     if bq < bm:
-        print("\n  The quote is a better forecast than the model at every probability bin.")
+        if market_bins == len(per_bin):
+            print("\n  The quote is a better-calibrated forecast than the model at every")
+            print("  probability bin.")
+        else:
+            print(f"\n  The quote is a better-calibrated forecast than the model in "
+                  f"{market_bins} of {len(per_bin)} probability bins.")
         print("  This is sec.9's honest prior confirmed rather than refuted: the observation")
         print("  is public and free, and the market already prices it. No recalibration of")
         print("  the model rescues a strategy that has to trade against a better forecast.")

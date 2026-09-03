@@ -51,7 +51,7 @@
 <circle cx="652.3" cy="261.6" r="3.82" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
 <circle cx="699.0" cy="229.5" r="3.67" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
 <circle cx="744.5" cy="182.8" r="5.67" fill="#c1483a" stroke="#ffffff" stroke-width="1.1"/>
-<text x="68" y="28" font-size="15.5" font-weight="600" fill="#1b1f24">The market is the better forecaster at every probability</text>
+<text x="68" y="28" font-size="15.5" font-weight="600" fill="#1b1f24">The market is the better-calibrated forecaster almost everywhere</text>
 <text x="68" y="50" font-size="12" fill="#5a636e">Reliability on each forecaster’s own bins, 235,145 bucket-hours, training cities.</text>
 <text x="68" y="68" font-size="11.5" fill="#5a636e">Dashed line is perfect calibration; marker area ∝ bin count.</text>
 <circle cx="84" cy="108.0" r="5" fill="#c1483a"/>

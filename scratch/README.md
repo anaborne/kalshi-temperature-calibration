@@ -31,6 +31,19 @@ counts behind the 2,950 strike-less markets lived in prose alone, which is
 load-bearing prose, since those markets moved Test A's leak rate from 0.1657% to
 0.1861%.
 
+**These logs predate the code corrections dated 2026-09-03.** They are the
+stdout of the run that produced `RESULTS.md`, and they are not re-run, because
+the `data/` cache is not committed and the pull is on the order of 10⁴ requests.
+Four of them print something the code no longer prints. `test_b_fit.log` and
+`test_b_holdout.log` report the bucket's Yes rate under the heading "accuracy",
+which for the sell shape is the rate at which the trade lost, and a 98.1%
+breakeven §6 derives for a 2¢ bucket; they also record the 2025-01-01 pre-period
+that Correction 4 moves to 2021-08-01. `check_calibration.log` prints "better
+forecast at every probability bin" off the aggregate Brier, with no per-bin
+comparison behind it. `check_depth_bias.log` prints a noise floor built from a
+disjoint half-split of the modern era. Each of those is a dated correction in
+`RESULTS.md` or `PREREGISTRATION.md`.
+
 **One redaction.** These logs originally printed absolute paths, which published
 the operator's home directory. The prefix was removed on 2026-08-27 and the
 scripts changed to log repo-relative paths (`common.short`), so `wrote

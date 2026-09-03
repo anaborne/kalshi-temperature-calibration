@@ -160,7 +160,7 @@ def main():
     s.append(series(rel["market"], MARKET, nmax))
     s.append(series(rel["model"], MODEL, nmax))
 
-    title = "The market is the better forecaster at every probability"
+    title = "The market is the better-calibrated forecaster almost everywhere"
     s.append(f'<text x="{L}" y="28" font-size="15.5" font-weight="600" fill="{INK}">'
              f'{title}</text>')
     _text_box(L, 28, 15.5, title, "start", "title")

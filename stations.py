@@ -50,7 +50,13 @@ RULE = re.compile(
 )
 AUTHORITY = [
     ("TWC", re.compile(r"The Weather Company", re.I)),
-    ("NWS_CLI", re.compile(r"National Weather Service'?s Climatological Report", re.I)),
+    # Three wordings of the same NWS product appear across the sample, and
+    # test_a.py pools all three. Matching only "Climatological Report" here left
+    # 3,730 NWS city-days with no settlement authority in the mapping table and
+    # in the authority_spans this file writes. Same pattern as test_a.py.
+    ("NWS_CLI", re.compile(
+        r"(National Weather Service'?s|NWS'?s?)\s+(Daily\s+Climate|Climatological)\s+Report",
+        re.I)),
 ]
 MONTHS = {m: i for i, m in enumerate(
     ["January", "February", "March", "April", "May", "June", "July",

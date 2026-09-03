@@ -32,12 +32,18 @@ THE FROZEN RULE (sec.6, nothing here is tunable)
                      and holdout.
 
                      And it is fit on a FIXED PRE-PERIOD, strictly before
-                     2025-01-01, frozen once, applied unchanged to every backtest
-                     day in both splits. Fitting a city on its full history would
-                     include the backtest days themselves and price a day using
-                     its own outcome. That lookahead is a worse error than the one
-                     Correction 2 fixes, so the cutoff is asserted in code, not
-                     trusted.
+                     PREPERIOD_END, frozen once, applied unchanged to every
+                     backtest day in both splits. Fitting a city on its full
+                     history would include the backtest days themselves and price
+                     a day using its own outcome. That lookahead is a worse error
+                     than the one Correction 2 fixes, so the cutoff is asserted
+                     in code, not trusted.
+
+                     CORRECTION 4 moves that cutoff from 2025-01-01 to
+                     2021-08-01. The original date was chosen when the market
+                     archive was believed to reach back 19 months. It reaches
+                     2021-08-06, so most backtest days sat inside the fit window
+                     and were priced partly by their own observations.
 
   Fair value         P(bucket b settles Yes) = empirical frequency of M_H + R
                      landing in b.
@@ -90,7 +96,8 @@ completeness, labelled, and is never the headline.
 
 TWO LIMITATIONS, MEASURED AND REPORTED, NOT CORRECTED
   - The table predicts the final OBSERVED max; buckets settle on the settlement
-    authority's value, which Test A measures at ~+0.8F above it with sd 0.74.
+    authority's value, which Test A measures at +0.72F above it with sd 0.74
+    on the NWS stratum (+0.86 / 0.67 on TWC).
     Checkpoint 1 required the same observation basis on both sides so that
     offset would "cancel inside the table". MEASURED, IT DOES NOT CANCEL: the
     table's output is compared against buckets defined on the SETTLEMENT value,
@@ -104,6 +111,9 @@ TWO LIMITATIONS, MEASURED AND REPORTED, NOT CORRECTED
     fill is the worst quote anywhere in that same hour. That is a small
     lookahead in the pre-registered rule. --holdout reports a lag-1 sensitivity
     (M_{H-1} against hour H's quotes) alongside the headline.
+  - Size is 5% of hour H's completed volume, which is also only knowable at the
+    end of hour H. The lag-1 sensitivity re-lags M_H only and does not bound
+    this term.
 """
 import argparse
 import collections
@@ -135,7 +145,13 @@ BOOTSTRAP = 10000
 SEED = 20260827
 
 # Correction 2: the residual table sees no observation on or after this date.
-PREPERIOD_END = dt.date(2025, 1, 1)
+# Correction 4: this was 2025-01-01, set when the market archive was believed to
+# reach back 19 months. It reaches 2021-08-06, so the fit window and the backtest
+# window overlapped by 3.4 years. The cutoff now sits at or before the earliest
+# market date, and verify_preperiod() asserts that the backtest postdates it.
+# IEM observations at these stations start in 1995, so the window is still about
+# 26 years deep and a (city, month, hour) cell still clears sec.6's floor of 200.
+PREPERIOD_END = dt.date(2021, 8, 1)
 
 # Correction 1: season is a stratification dimension alongside authority.
 # Meteorological seasons. Do not pool. The premise of C3 is a summer fact and
@@ -251,8 +267,12 @@ def fit_table(mapping, series_list, until=PREPERIOD_END):
 def verify_preperiod(mapping, series_list, newest, table):
     """Hard confirmation, printed before anything fires. Correction 2.
 
-    Two claims: no observation dated on or after the cutoff entered the table,
-    and every populated cell clears sec.6's 200-observation floor.
+    Three claims: no observation dated on or after the cutoff entered the table,
+    every backtest day the table will price falls on or after that cutoff, and
+    every populated cell clears sec.6's 200-observation floor.
+
+    Correction 4 added the second claim. The first one on its own only checks the
+    table side, so a cutoff sitting inside the backtest window passed it silently.
     """
     cutoff = PREPERIOD_END.isoformat()
     print(f"\n  PRE-PERIOD VERIFICATION (Correction 2)")
@@ -263,6 +283,19 @@ def verify_preperiod(mapping, series_list, newest, table):
     if bad:
         sys.exit(f"    FAIL -- {bad} admitted observations on or after the cutoff")
     print(f"    PASS -- no observation dated {cutoff} or later entered the table")
+
+    # Correction 4. A pre-period is only a pre-period if the backtest comes
+    # after it. Every date in the market universe is checked, both splits,
+    # because the same table prices both.
+    dates = [event_date(ev) for ev in load_ladders(set(series_list))]
+    earliest = min(dates) if dates else None
+    print(f"    earliest backtest date over {len(series_list)} cities: "
+          f"{earliest.isoformat() if earliest else 'n/a'}")
+    if earliest is not None and earliest < PREPERIOD_END:
+        sys.exit(f"    FAIL -- the backtest starts {earliest}, inside the fit "
+                 f"window ending {cutoff}; those days are priced by a table that "
+                 f"contains their own observations")
+    print(f"    PASS -- no backtest day falls inside the fit window")
 
     counts = {k: sum(v.values()) for k, v in table.items()}
     below = {k: n for k, n in counts.items() if n < MIN_CELL}
@@ -512,7 +545,19 @@ def shape_stats(trades, shape):
     contracts = sum(t["size"] for t in g)
     lo, hi = bootstrap_ci(pnl)
     clo, chi = bootstrap_ci(pnl, clusters=[t["date"] for t in g])
-    wins = sum(1 for t in g if t["won"])
+    # t["won"] is in_bucket(settled, bounds), i.e. the bucket settling YES. For a
+    # BUY that is the trade winning; for a SELL it is the trade losing. Scoring
+    # the raw flag reports the complement of the truth on the sell shape and
+    # mixes the two on the shapes that hold both sides. The statistic is the rate
+    # at which settlement went the TRADE's way.
+    wins = sum(1 for t in g if t["won"] != (t["side"] == "sell"))
+    # The accuracy the shape needs to break even AT THE PRICES IT FILLED. Per
+    # contract a buy pays quote plus fee and collects 1 on Yes; a sell collects
+    # quote less fee and pays 1 on Yes. sec.6's 98.1% is this quantity for a 2c
+    # dominated bucket, which is not what the book filled at, so it is computed
+    # from the fills rather than carried over as a constant.
+    need = sum(t["size"] * (t["quote"] if t["side"] == "buy" else 1.0 - t["quote"])
+               + t["fee"] for t in g)
     return {"shape": shape, "n_trades": len(g), "n_dates": len({t["date"] for t in g}),
             "n_contracts": contracts, "total_pnl": sum(pnl),
             "mean_pnl_per_trade": sum(pnl) / len(g),
@@ -520,6 +565,8 @@ def shape_stats(trades, shape):
             "ci95_lo_date_clustered": clo, "ci95_hi_date_clustered": chi,
             "cents_per_contract": 100.0 * sum(pnl) / contracts,
             "settle_accuracy_pct": 100.0 * wins / len(g),
+            "breakeven_accuracy_pct": 100.0 * need / contracts,
+            "mean_fill_price": sum(t["size"] * t["quote"] for t in g) / contracts,
             "meets_trade_floor": len(g) >= 30}
 
 
@@ -527,7 +574,7 @@ def by_shape(trades, label="PnL"):
     """sec.6's two shapes, reported separately and never summed into one edge."""
     print(f"\n  {label} BY TRADE SHAPE -- reported separately, never pooled into one edge")
     print(f"  {'shape':<24} {'trades':>7} {'dates':>6} {'mean/trade':>11} "
-          f"{'95% CI':>22} {'c/contract':>11} {'accuracy':>9}")
+          f"{'95% CI':>22} {'c/contract':>11} {'settle-right':>13}")
     out = {}
     for shape in ("dominated-bucket sell", "mid-bucket buy", "other"):
         st = shape_stats(trades, shape)
@@ -536,14 +583,25 @@ def by_shape(trades, label="PnL"):
             print(f"  {shape:<24} {0:>7}")
             continue
         ci = f"[{st['ci95_lo']:>7.4f},{st['ci95_hi']:>8.4f}]"
+        cci = f"[{st['ci95_lo_date_clustered']:>7.4f},{st['ci95_hi_date_clustered']:>8.4f}]"
         print(f"  {shape:<24} {st['n_trades']:>7,} {st['n_dates']:>6} "
               f"${st['mean_pnl_per_trade']:>10.4f} {ci:>22} "
-              f"{st['cents_per_contract']:>10.2f}c {st['settle_accuracy_pct']:>8.1f}%")
+              f"{st['cents_per_contract']:>10.2f}c {st['settle_accuracy_pct']:>12.1f}%")
+        # sec.8 is applied per shape, so the shape's clustered interval has to be
+        # printed too. 78 sells over 18 dates is where clustering can bite.
+        print(f"  {'':<24} {'':>7} {'':>6} {'clustered':>11} {cci:>22}")
+
+    print("\n  settle-right is the rate at which settlement went the trade's way: the")
+    print("  bucket settling Yes for a buy, No for a sell. It is not the bucket's Yes rate.")
 
     dom = out["dominated-bucket sell"]
     if dom["n_trades"]:
-        print(f"\n    dominated-bucket sells need 98.1% settle accuracy to break even; "
+        print(f"\n    dominated-bucket sells filled at a mean "
+              f"{100 * dom['mean_fill_price']:.0f}c, so they need "
+              f"{dom['breakeven_accuracy_pct']:.1f}% settle accuracy to break even; "
               f"realised {dom['settle_accuracy_pct']:.1f}%.")
+        print(f"    sec.6's 98.1% is the same quantity for a 2c bucket, which is not")
+        print(f"    the price this book got filled at.")
         print(f"    Their EV is determined by the floor violation rate, which Test A bounds")
         print(f"    at 25% per date in the TWC stratum. This shape is not evidenced by this")
         print(f"    sample regardless of what its realised PnL says.")

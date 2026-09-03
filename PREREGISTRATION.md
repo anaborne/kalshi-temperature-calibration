@@ -305,6 +305,14 @@ So the sample is at least 19 months across all four seasons, not 68 summer days.
 
 **Not changed, and this is the part not to lose in the good news.** The deep archive adds nothing to the TWC-authority stratum, because TWC settlement began around 2026-08-13. That stratum is ~13 days × 21 cities however far back the history goes, and it grows only with the calendar, at roughly 21 city-days per day. Test A's forward-relevant question is exactly as underpowered as it was an hour ago. More history answers seasonality and strategy questions; it does not answer the divergence question, and the two must not be allowed to blur.
 
+*Corrected 2026-09-03. Checkpoint 1's "57/43" is the city ratio, 12 and 9 of 21.
+§7 targets a ratio by city-day count, which is also what `stations.py` prints.
+By city-day on the live tier that ratio is 4,896 / 3,306 = 59.7/40.3
+(`data/station_proposal.json`), and over the full 10,677 settled city-days the
+archive opened up, the realised split is 64.5/35.5. This correction voids
+Checkpoint 1's sample-size decision tree and never revisited that number. §7
+still says take the printed assignment, and it is taken.*
+
 ## Seasonal stratification
 
 Season joins settlement authority as a stratification dimension in the same run. Do not pool and do not defer. Report winter, spring, summer and autumn separately, holdout discipline applied within each.
@@ -372,8 +380,26 @@ Over 235,145 bucket-hours:
 
 The market's quote is more than twice as accurate a forecast, and it wins in every probability bin. No recalibration rescues a strategy that must trade against a forecaster twice as good as its own, because there is no edge to calibrate toward.
 
+*Corrected 2026-09-03: "it wins in every probability bin" was never computed. `check_calibration.py` printed that claim off the aggregate Brier alone and no per-bin comparison existed in the pipeline. On the comparison the committed `figures/calibration.json` supports, absolute calibration error inside each forecaster's own bins, the quote is better calibrated in eleven of twelve bins and the model is closer in the 0.30-0.40 bin. The Brier comparison and the factor of more than two stand. Text above left standing.*
+
 §9's stated prior, "the observation is public and free and this is the obvious thing to do with it", is confirmed. It was written down before the test, and it held.
 
 This measurement is the publishable output of Stage 3, ahead of Test A: a pre-registered, reproducible finding that Kalshi's daily-temperature markets are well calibrated against public observation data, with the counter-hypothesis tested and rejected on its own committed criteria.
 
 **Sibling study.** The same method, applied to Kalshi's NFL and NBA player-prop markets, is at https://github.com/anaborne/kalshi-prop-calibration. There the pre-registered statistic passed and the pass was traced to a measurement artifact in the venue's mid-quote, so the two studies fail in different ways and should be read together.
+
+---
+
+# Correction 4, the 2025-01-01 pre-period does not precede the backtest
+
+Recorded 2026-09-03, after the holdout, and appended below. Correction 2 stands as written and is wrong on the date it chose.
+
+**What was wrong.** Correction 2 set the residual table's pre-period at 2025-01-01 and described it as fixed and constant across the backtest. The date was chosen while Correction 1 had established only that the market archive reached back "at least 19 months", which put its floor near January 2025. The pull reached 2021-08-06 (`scratch/test_a.log:4`), so the fit window and the backtest window overlap by 3.4 years.
+
+**What it costs.** For any backtest day before 2025-01-01, the `(city, month, H)` cell that prices that day contains that day's own `(M_H, final max)` pair. The holdout run covers 1,463 distinct dates and only 603 calendar days lie between 2025-01-01 and 2026-08-25, so at least 860 of those dates, 58.8% of them, fall inside the fit window. The fit run is the same shape at 1,559 trade dates, and so are the 235,145 bucket-hours behind the Brier comparison. Each cell holds about 930 observations, so a day contributes roughly 0.1% of its own price, and the direction flatters the model. It does not overturn a losing verdict. Correction 2 called this class of error worse than the one it was fixing, and it was present anyway.
+
+**Why the check did not catch it.** `verify_preperiod()` asserted that no observation dated on or after the cutoff entered the table. It never asserted that the backtest days postdate the cutoff, which is the other half of the same claim. `test_b.py` describes that check as the reason the cutoff is "asserted in code, not trusted", and it could not see this.
+
+**Binding resolution.** `PREPERIOD_END` is 2021-08-01, at or before the earliest market date in the sample. IEM observations at these stations start in 1995 (`scratch/fetch_obs_totals.log:2-22`), so the fit window is about 26 years deep and a `(city, month, H)` cell still clears §6's floor of 200. `verify_preperiod()` now asserts that the earliest date in the market universe falls on or after the cutoff and exits if it does not.
+
+**What this does not change.** The published numbers were produced under the 2025-01-01 cutoff and are not re-run here, because the `data/` cache is not committed and the pull is on the order of 10⁴ requests. So for the published sample the lookahead Correction 2 set out to remove is removed only for the post-2025 portion. Threshold, cell keys, observation floor, fill assumption and size cap are untouched.
