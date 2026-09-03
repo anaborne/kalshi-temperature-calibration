@@ -307,11 +307,12 @@ So the sample is at least 19 months across all four seasons, not 68 summer days.
 
 *Corrected 2026-09-03. Checkpoint 1's "57/43" is the city ratio, 12 and 9 of 21.
 §7 targets a ratio by city-day count, which is also what `stations.py` prints.
-By city-day on the live tier that ratio is 4,896 / 3,306 = 59.7/40.3
-(`data/station_proposal.json`), and over the full 10,677 settled city-days the
-archive opened up, the realised split is 64.5/35.5. This correction voids
-Checkpoint 1's sample-size decision tree and never revisited that number. §7
-still says take the printed assignment, and it is taken.*
+By city-day on the live tier that ratio is 816 / 551 = 59.7/40.3
+(`data/station_proposal.json`, 4,896 / 3,306 markets at six per ladder), and over
+the full 10,677 settled city-days the archive opened up
+(`scratch/fetch_hist2.log:75-95`), the realised split is 64.5/35.5. This
+correction voids Checkpoint 1's sample-size decision tree and never revisited
+that number. §7 still says take the printed assignment, and it is taken.*
 
 ## Seasonal stratification
 
@@ -396,10 +397,10 @@ Recorded 2026-09-03, after the holdout, and appended below. Correction 2 stands 
 
 **What was wrong.** Correction 2 set the residual table's pre-period at 2025-01-01 and described it as fixed and constant across the backtest. The date was chosen while Correction 1 had established only that the market archive reached back "at least 19 months", which put its floor near January 2025. The pull reached 2021-08-06 (`scratch/test_a.log:4`), so the fit window and the backtest window overlap by 3.4 years.
 
-**What it costs.** For any backtest day before 2025-01-01, the `(city, month, H)` cell that prices that day contains that day's own `(M_H, final max)` pair. The holdout run covers 1,463 distinct dates and only 603 calendar days lie between 2025-01-01 and 2026-08-25, so at least 860 of those dates, 58.8% of them, fall inside the fit window. The fit run is the same shape at 1,559 trade dates, and so are the 235,145 bucket-hours behind the Brier comparison. Each cell holds about 930 observations, so a day contributes roughly 0.1% of its own price, and the direction flatters the model. It does not overturn a losing verdict. Correction 2 called this class of error worse than the one it was fixing, and it was present anyway.
+**What it costs.** For any backtest day before 2025-01-01, the `(city, month, H)` cell that prices that day contains that day's own `(M_H, final max)` pair. The holdout run covers 1,463 distinct dates and only 602 calendar days lie between 2025-01-01 and 2026-08-25, so at least 861 of those dates, 58.85% of them, fall inside the fit window. The fit run is the same shape at 1,559 trade dates, and so are the 235,145 bucket-hours behind the Brier comparison. Each cell holds about 930 observations, so a day contributes roughly 0.1% of its own price, and the direction flatters the model. It does not overturn a losing verdict. Correction 2 called this class of error worse than the one it was fixing, and it was present anyway.
 
 **Why the check did not catch it.** `verify_preperiod()` asserted that no observation dated on or after the cutoff entered the table. It never asserted that the backtest days postdate the cutoff, which is the other half of the same claim. `test_b.py` describes that check as the reason the cutoff is "asserted in code, not trusted", and it could not see this.
 
-**Binding resolution.** `PREPERIOD_END` is 2021-08-01, at or before the earliest market date in the sample. IEM observations at these stations start in 1995 (`scratch/fetch_obs_totals.log:2-22`), so the fit window is about 26 years deep and a `(city, month, H)` cell still clears §6's floor of 200. `verify_preperiod()` now asserts that the earliest date in the market universe falls on or after the cutoff and exits if it does not.
+**Binding resolution.** `PREPERIOD_END` is 2021-08-01, at or before the earliest market date in the sample. IEM observations reach back to 1995 at twenty of the twenty-one stations and to 1998-04-28 at Austin (`scratch/fetch_obs_totals.log:2-22`), so the fit window is 23 to 26 years deep and a `(city, month, H)` cell still clears §6's floor of 200. `verify_preperiod()` now asserts that the earliest date in the market universe falls on or after the cutoff and exits if it does not.
 
 **What this does not change.** The published numbers were produced under the 2025-01-01 cutoff and are not re-run here, because the `data/` cache is not committed and the pull is on the order of 10⁴ requests. So for the published sample the lookahead Correction 2 set out to remove is removed only for the post-2025 portion. Threshold, cell keys, observation floor, fill assumption and size cap are untouched.

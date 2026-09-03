@@ -94,7 +94,7 @@ pooled figure is positive but the dominated-bucket shape carries it, that is
 reported as a red flag and not as a result. The pooled row is printed for
 completeness, labelled, and is never the headline.
 
-TWO LIMITATIONS, MEASURED AND REPORTED, NOT CORRECTED
+THREE LIMITATIONS, MEASURED AND REPORTED, NOT CORRECTED
   - The table predicts the final OBSERVED max; buckets settle on the settlement
     authority's value, which Test A measures at +0.72F above it with sd 0.74
     on the NWS stratum (+0.86 / 0.67 on TWC).
@@ -549,8 +549,11 @@ def shape_stats(trades, shape):
     # BUY that is the trade winning; for a SELL it is the trade losing. Scoring
     # the raw flag reports the complement of the truth on the sell shape and
     # mixes the two on the shapes that hold both sides. The statistic is the rate
-    # at which settlement went the TRADE's way.
-    wins = sum(1 for t in g if t["won"] != (t["side"] == "sell"))
+    # at which settlement went the TRADE's way, weighted by contracts so that it
+    # shares a denominator with cents_per_contract and with the breakeven below.
+    # Trade sizes vary, so a trade-count weighting would let the printed
+    # comparison invert against the PnL it is read beside.
+    wins = sum(t["size"] for t in g if t["won"] != (t["side"] == "sell"))
     # The accuracy the shape needs to break even AT THE PRICES IT FILLED. Per
     # contract a buy pays quote plus fee and collects 1 on Yes; a sell collects
     # quote less fee and pays 1 on Yes. sec.6's 98.1% is this quantity for a 2c
@@ -564,7 +567,7 @@ def shape_stats(trades, shape):
             "ci95_lo": lo, "ci95_hi": hi,
             "ci95_lo_date_clustered": clo, "ci95_hi_date_clustered": chi,
             "cents_per_contract": 100.0 * sum(pnl) / contracts,
-            "settle_accuracy_pct": 100.0 * wins / len(g),
+            "settle_accuracy_pct": 100.0 * wins / contracts,
             "breakeven_accuracy_pct": 100.0 * need / contracts,
             "mean_fill_price": sum(t["size"] * t["quote"] for t in g) / contracts,
             "meets_trade_floor": len(g) >= 30}
@@ -593,6 +596,7 @@ def by_shape(trades, label="PnL"):
 
     print("\n  settle-right is the rate at which settlement went the trade's way: the")
     print("  bucket settling Yes for a buy, No for a sell. It is not the bucket's Yes rate.")
+    print("  It is weighted by contracts, the same denominator as c/contract.")
 
     dom = out["dominated-bucket sell"]
     if dom["n_trades"]:

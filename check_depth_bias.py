@@ -165,10 +165,10 @@ def _nested_null(pool, n_outer, n_inner, rng, splits):
     """Sampling spread of the max-cell statistic, at the comparison's own shape.
 
     The comparison this benchmarks is a table on 1995-2024 against a table on
-    2010-2024: a superset against a subset of itself, sharing every day the
-    smaller one has. A disjoint half-split of the modern era matches neither the
-    sizes nor the overlap, and the sampling spread of a per-cell difference is
-    several times wider for two disjoint halves than for a nested pair, so a
+    2010-2024: a superset against a subset of itself. The smaller set's days are
+    all in the larger one. A disjoint half-split of the modern era matches neither
+    the sizes nor the overlap, and the sampling spread of a per-cell difference
+    is several times wider for two disjoint halves than for a nested pair, so a
     floor built that way is several times too high. Both sets here are still
     drawn from the same era, so bias remains impossible by construction.
     """

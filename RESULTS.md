@@ -42,10 +42,10 @@ writing does not get to round in its own favour.*
 *Corrected 2026-09-03, candlestick row. That row rests the final 60,906 / 60,906
 count on `fetch_candles.py --status` at the time and on the commit message of the
 commit that completed the cache. Neither is in this repository. `git rev-list
---count HEAD` returns 1: the repository was republished as a single commit,
-`4ee3b84`, on 2026-08-29, the commit named there no longer exists in its history,
-and the `--status` output was never committed. So the final count has no
-committed source. What is checkable is `scratch/fetch_candles.log`, which ends at
+HEAD` shows the repository was republished as a single commit, `4ee3b84`, on
+2026-08-29; the commit named above is not among its ancestors, and the
+`--status` output was never committed. So the final count has no committed
+source. What is checkable is `scratch/fetch_candles.log`, which ends at
 60,753 cached with 153 markets errored on HTTP 429. `README.md` carries the
 single-commit disclaimer for the pre-registration timestamps only.*
 
@@ -186,15 +186,15 @@ as sqrt(1/n1 + 1/n2) for two disjoint halves and as sqrt((nA−nB)/nA² +
 too wide for the "1995 vs 2010" column and about 4.0× too wide for the "2005 vs
 2010" column. Rescaled, the floors against the 1995 column are NYC 3.90¢, MDW
 4.23¢, LAX 3.76¢, SAN 4.08¢, PHL 3.93¢, and all five observed differences sit
-above their floor. Against the 2005 column the rescaled floors run 2.7¢ to 3.0¢
-and four of the five observed differences sit above them. The sentence above
-retracting the earlier 7.47¢ NYC citation therefore does not stand: 7.47¢ is
-about 1.9× its correctly scaled floor. The "uninformative below roughly 11¢" rule stated
-here, carried forward at §8's first caveat and in `README.md`, is calibrated to
-a sample shape this project never used. `check_depth_bias.py` now builds the
-null at the sizes and the nesting of the comparison it benchmarks. The table
-above is not re-run here, because the `data/` observation cache is not
-committed.*
+above their floor. Against the 2005 column the rescaled floors run 2.7¢ to 3.0¢,
+close enough to the observed differences that this column is not decided either
+way until the table is re-run. The sentence above retracting the earlier 7.47¢
+NYC citation therefore does not stand: 7.47¢ is about 1.9× its correctly scaled
+floor. The "uninformative below roughly 11¢" rule stated here, carried forward
+at §8's first caveat and in `README.md`, is calibrated to a sample shape this
+project never used. `check_depth_bias.py` now builds the null at the sizes and
+the nesting of the comparison it benchmarks. The table above is not re-run here,
+because the `data/` observation cache is not committed.*
 
 ### 3.2 TWC is in the clean band, and the power limit travels with it
 
@@ -452,10 +452,28 @@ in-book Yes rate on these trades is 94.9%, a factor of 500 that the paragraph
 never reconciles. The −23.46¢/contract and the confidence interval are
 unaffected. §6's training-shape table above carries the same inversion: its
 87.2% is the Yes rate on 117 sells, which settled No on 12.8% of trades, and its
-"other" row pools both sides so 66.2% is not one statistic. `test_b.py` now
-scores the statistic side-aware and computes the breakeven from the prices
-actually filled; the committed logs predate that fix and print the uncorrected
-pair.*
+"other" row pools both sides, so the bucket's Yes rate there is not any shape's
+accuracy. `test_b.py` now scores the statistic side-aware and computes the
+breakeven from the prices actually filled; the committed logs predate that fix
+and print the uncorrected pair.*
+
+*Corrected 2026-09-03, second entry on the dominated-bucket sell row. The 5.1%
+above is weighted by trades: 4 of the 78 sells settled No. The breakeven it is
+set against, and the −23.46¢/contract beside it, are weighted by contracts.
+Size is 5% of hour H's completed volume (§6), so it varies from trade to trade,
+and the two weightings agree only on an even size distribution. The gap can
+invert the comparison. Forty sells filled at 73¢, twenty of size 1 that settle
+No and twenty of size 100 that settle Yes, print a realised 50.0% against a
+28.4% breakeven under trade weighting, while the book returns −27.39¢/contract.
+`test_b.py` now weights the settle rate by contracts, so the printed comparison
+and the PnL share a denominator. This shape holds 1,369 contracts over 78
+trades (78 × −$4.1176 = −$321.17 at −23.46¢/contract), a mean size of 17.6, and
+the per-trade sizes are in `data/test_b_results.json`, which is not committed.
+So the contract-weighted rate cannot be recovered here, 5.1% stands only as a
+trade-weighted rate, and a re-run will print a different number unless those
+four trades hold 5.1% of the 1,369 contracts. The mean fill near 73¢, the ~29%
+breakeven and the ~24-point shortfall in the paragraph above all read 94.9% as
+though it were contract-weighted, and they inherit the same mismatch.*
 
 ---
 
@@ -507,6 +525,10 @@ public data says it should:
 1. **The ~11¢ noise floor.** Any "worst fair-value difference across cells"
    figure is uninformative below roughly 11¢ (§3.1). This is a property of the
    instrument and applies to anything downstream.
+   *Corrected 2026-09-03: §3.1's floor is several times too wide for the
+   comparison it judges. Against the 1995 column the rescaled floors are 3.8¢ to
+   4.2¢ and all five depth differences sit above them, so this caveat does not
+   stand at 11¢ and no downstream figure should be read against that number.*
 2. **TWC's clean record is 12 dates.** P(zero violations | the NWS divergence
    rate) = 0.098. Weak evidence TWC diverges less; not evidence the floor holds.
 3. TWC is unmeasured in spring, the season where the historical regime leaks
