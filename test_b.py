@@ -149,8 +149,9 @@ SEED = 20260827
 # reach back 19 months. It reaches 2021-08-06, so the fit window and the backtest
 # window overlapped by 3.4 years. The cutoff now sits at or before the earliest
 # market date, and verify_preperiod() asserts that the backtest postdates it.
-# IEM observations at these stations start in 1995, so the window is still about
-# 26 years deep and a (city, month, hour) cell still clears sec.6's floor of 200.
+# IEM observations reach back to 1995 at twenty of the twenty-one stations and to
+# 1998-04-28 at Austin, so the window is 23 to 26 years deep and a (city, month,
+# hour) cell still clears sec.6's floor of 200.
 PREPERIOD_END = dt.date(2021, 8, 1)
 
 # Correction 1: season is a stratification dimension alongside authority.
