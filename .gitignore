@@ -14,3 +14,8 @@ __pycache__/
 
 # figures/ is committed: calibration.json is the diagnostic's own output and
 # calibration.svg is rendered from it by make_figures.py, no deps required.
+
+# added 2026-09-08 during disk cleanup
+node_modules/
+.pytest_cache/
+.ruff_cache/
